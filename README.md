@@ -21,7 +21,20 @@ Phân tích tập dữ liệu Rice2024
 - Đánh giá mô hình
 - Xây dựng website để dự đoán loại gạo
 
+--- 
+
 ## Application
 
 ### Mô tả
 Đây là website dự đoán gạo ...
+
+Các giải thuật để dự đoán:
+
+- K-Nearest Neighbors
+- Naive Bayes
+- Decision Tree
+- Random Forest
+- Logistic Regression
+- Support Vector Machine
+- Multilayer Perceptron
+- Adaboost
