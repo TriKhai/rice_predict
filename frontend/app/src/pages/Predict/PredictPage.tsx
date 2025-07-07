@@ -28,8 +28,8 @@ const PredictPage: React.FC = () => {
     { value: "random-forest", label: "Random Forest" },
     { value: "support-vector-machine", label: "SVM (Support Vector Machine)" },
     { value: "logistic-regression", label: "Logistic Regression" },
-    { value: "multiple-perceptron-learning", label: "Multiple Perceptron Learning" },
-    { value: "adaboot", label: "Adaboot" },
+    { value: "multilayer-perceptron", label: "Multilayer Perceptron" },
+    { value: "adaboost", label: "Adaboost" },
   ]
 
 
