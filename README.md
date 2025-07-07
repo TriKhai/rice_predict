@@ -6,8 +6,8 @@
 
 ## Technologies Used:
 
-- Python 3.10
-- Streamlit
+- Flask 3.1.1
+- React 19.1.0
 
 ## Task
 
@@ -24,33 +24,4 @@ Phân tích tập dữ liệu Rice2024
 ## Application
 
 ### Mô tả
-undating...
-
-### Yêu cầu
-
-- Python 3.10
-
-### Cài đặt
-
-1. Clone repo frontend (nếu chưa)
-
-```bash
-git clone <url-repo-github>
-cd <thư-mục-rice_classifier>
-```
-
-2. Cài đặt thư viện
-```bash
-pip install -r requirements.txt
-```
-
-3. Chạy mô hình
-```bash
-python machine_learning/preprocess.py
-python machine_learning/train_model.py
-```
-
-4. Chạy app
-```bash
-streamlit run app.py
-```
+Đây là website dự đoán gạo ...
