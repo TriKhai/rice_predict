@@ -4,22 +4,29 @@
 
 - Python 3.8+
 
-1. Cbackendhạy migrate database
+## Cách chạy backend Flask
+
+1. Vào thư mục backend
 ```bash
-python manage.py migrate
+cd backend
 ```
 
-2. Tạo migration (nếu bạn có thay đổi models)
+2. (Khuyến nghị) Tạo virtual environment
 ```bash
-python manage.py makemigrations
+python3 -m venv venv
+source venv/bin/activate  # Trên Linux/macOS
+# .\venv\Scripts\activate  # Trên Windows
+
 ```
 
-3. Khởi động server
+3. Cài đặt thư viện phụ thuộc
 ```bash
-python manage.py runserver
+pip install -r requirements.txt
 ```
 
-4. Nạp dữ liệu vào db
+4. Chạy ứng dụng Flask
 ```bash
-python db_csv.py
+python3 app.py
 ```
+
+Nếu app không khởi chạy, hãy thử thêm dòng sau vào cuối file app.py:
