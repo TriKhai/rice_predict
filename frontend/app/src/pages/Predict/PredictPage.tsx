@@ -30,19 +30,19 @@ const PredictSchema = Yup.object().shape({
   perimeter: Yup.number()
     .typeError('Phải là một số')
     .positive('Chu vi của hạt gạo (px) phải lớn hơn 0!')
-    .min(0, 'Chu vi này quá nhỏ để mô hình có thể nhận diện chính xác! Hãy nhập lớn hơn')
+    .min(1, 'Chu vi này quá nhỏ để mô hình có thể nhận diện chính xác! Hãy nhập lớn hơn')
     .max(9999, 'Con số bạn vừa nhập quá to! Hãy nhập nhỏ lại')
     .required('Hãy nhập chu vi hạt gạo '),
   major_axis_length: Yup.number()
     .typeError('Phải là một số')
     .positive('Độ dài trục lớn của hạt gạo (px) phải lớn hơn 0!')
-    .min(0, 'Độ dài trục lớn này quá nhỏ để mô hình có thể nhận diện chính xác! Hãy nhập lớn hơn')
+    .min(1, 'Độ dài trục lớn này quá nhỏ để mô hình có thể nhận diện chính xác! Hãy nhập lớn hơn')
     .max(9999, 'Con số bạn vừa nhập quá to! Hãy nhập nhỏ lại')
     .required('Hãy nhập độ dài trục lớn của hạt gạo '),
   minor_axis_length: Yup.number()
     .typeError('Phải là một số')
     .positive('Độ dài trục nhỏ của hạt gạo (px) phải lớn hơn 0!')
-    .min(0, 'Độ dài trục nhỏ này quá nhỏ để mô hình có thể nhận diện chính xác! Hãy nhập lớn hơn')
+    .min(1, 'Độ dài trục nhỏ này quá nhỏ để mô hình có thể nhận diện chính xác! Hãy nhập lớn hơn')
     .max(9999, 'Con số bạn vừa nhập quá to! Hãy nhập nhỏ lại')
     .required('Hãy nhập Độ dài trục nhỏ của hạt gạo '),
   eccentricity: Yup.number()
@@ -54,7 +54,7 @@ const PredictSchema = Yup.object().shape({
   convex_area: Yup.number()
     .typeError('Phải là một số')
     .positive('Diện tích của hình bao lồi phải lớn hơn 0!')
-    .min(0, 'Diện tích của hình bao lồi này quá nhỏ để mô hình có thể nhận diện chính xác! Hãy nhập lớn hơn')
+    .min(1, 'Diện tích của hình bao lồi quá nhỏ để mô hình có thể nhận diện chính xác! Hãy nhập lớn hơn')
     .max(99999, 'Con số bạn vừa nhập quá to! Hãy nhập nhỏ lại')
     .required('Hãy nhập diện tích của hình bao lồi hạt gạo '),
   extent: Yup.number()
