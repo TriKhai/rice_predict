@@ -2,15 +2,18 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 const MainPage: React.FC = () => {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <div className="flex-1 container mx-auto p-4">
-        <Outlet /> 
-      </div>
-      <Footer />
+    <div className="flex flex-col min-h-screen bg-sky-500">
+      <ParallaxProvider>
+        <Header />
+        <div className="flex-1 container mx-auto mt-10">
+          <Outlet /> 
+        </div>
+        <Footer />
+      </ParallaxProvider>
     </div>
   );
 };
