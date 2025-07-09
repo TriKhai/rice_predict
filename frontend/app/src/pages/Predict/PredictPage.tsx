@@ -171,6 +171,7 @@ const PredictPage: React.FC = () => {
 
   return (
     <div className="max-w-xl mx-auto p-6 space-y-4">
+
       <h2 className="text-2xl font-bold mb-4 text-center">Dự đoán loại gạo</h2>
       <form onSubmit={formik.handleSubmit} className="space-y-4">
         {inputs.map(({ key, name, desc, hint }) => (
