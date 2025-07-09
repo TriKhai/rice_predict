@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from models import random_forest_model
-from utils.extract import extract_features
+from utils.extract import extract_features, wrap_with_column_names
 
 rf_route = Blueprint("rf_route", __name__)
 
@@ -9,7 +9,8 @@ def predict_rf():
     try:
         data = request.json
         features = extract_features(data)
-        result = random_forest_model.predict(features)[0]
+        df = wrap_with_column_names(features)
+        result = random_forest_model.predict(df)[0]
 
         predict = "O"
         if (result == 0):

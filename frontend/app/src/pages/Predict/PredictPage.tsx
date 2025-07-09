@@ -151,8 +151,8 @@ const PredictPage: React.FC = () => {
           setResult(`Kết quả: Gạo trên thuộc loại gạo ${data.data?.prediction == 'C' ? "Cammeo" : "Osmancik"}`);
           setErr(null)
         } else {
-          setResult(`Lỗi: ${data.message}`);
-          setErr(null)
+          setResult(null);
+          setErr(`Lỗi: ${data.message}`)
         }
       } catch (err) {
         setErr("Không thể kết nối đến máy chủ");

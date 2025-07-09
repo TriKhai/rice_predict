@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from models import decision_tree_model
-from utils.extract import extract_features
+from utils.extract import extract_features, wrap_with_column_names
 
 dt_route = Blueprint("dt_route", __name__)
 
@@ -9,7 +9,8 @@ def predict_decision_tree():
     try:
         data = request.json
         features = extract_features(data)
-        result = decision_tree_model.predict(features)[0]
+        df = wrap_with_column_names(features)
+        result = decision_tree_model.predict(df)[0]
 
         predict = "O"
         if (result == 0):

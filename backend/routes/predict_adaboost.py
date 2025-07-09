@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from models import adaboost_model
-from utils.extract import extract_features
+from utils.extract import extract_features, wrap_with_column_names
 
 adaboost_route = Blueprint("adaboost_route", __name__)
 
@@ -9,7 +9,8 @@ def predict_adaboost():
     try:
         data = request.json
         features = extract_features(data)
-        result = adaboost_model.predict(features)[0]
+        df = wrap_with_column_names(features)
+        result = adaboost_model.predict(df)[0]
 
         predict = "O"
         if (result == 0):

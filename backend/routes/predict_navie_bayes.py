@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from models import navie_bayes_model
-from utils.extract import extract_features
+from utils.extract import extract_features, wrap_with_column_names
 
 navie_bayes_route = Blueprint("navie_bayes_route", __name__)
 
@@ -9,7 +9,9 @@ def predict_navie_bayes():
     try:
         data = request.json
         features = extract_features(data)
-        result = navie_bayes_model.predict(features)[0]
+        df = wrap_with_column_names(features)
+        result = navie_bayes_model.predict(df)[0]
+        # result = navie_bayes_model.predict(features)[0]
 
         predict = "O"
         if (result == 0):
