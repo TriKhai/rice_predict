@@ -1,26 +1,30 @@
 // src/pages/Home.tsx
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import axiosClient from '../../config/axios';
+import HomeBanner from '../../components/home/homeBanner';
+import IntroRiceComponent from '../../components/home/IntroRiceComponent';
+import VariablesTableComponent from '../../components/home/VariablesTableComponent';
+
 
 function Home() {
-  const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
     axiosClient.get('/', {
       responseType: 'text'  
     })
     .then((res) => {
-      setMessage(res.data);  
+      console.log(res.data)
     })
     .catch((error) => {
       console.error("Lỗi khi gọi API:", error);
-      setMessage("Lỗi khi kết nối đến backend");
     });
   }, []);
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-2">{message}</h1>
+    <div className="p-4 m-5">
+      <HomeBanner></HomeBanner>
+      <IntroRiceComponent></IntroRiceComponent>
+      <VariablesTableComponent></VariablesTableComponent>
     </div>
   );
 }

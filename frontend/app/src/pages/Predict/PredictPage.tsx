@@ -172,11 +172,11 @@ const PredictPage: React.FC = () => {
   return (
     <div className="max-w-xl mx-auto p-6 space-y-4">
 
-      <h2 className="text-2xl font-bold mb-4 text-center">Dự đoán loại gạo</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center text-white">Dự đoán loại gạo</h2>
       <form onSubmit={formik.handleSubmit} className="space-y-4">
         {inputs.map(({ key, name, desc, hint }) => (
           <div key={key}>
-            <label className="block capitalize font-medium" title={desc}>
+            <label className="block capitalize font-medium text-white" title={desc}>
               {name} ({hint}):
             </label>
             <input
@@ -185,7 +185,7 @@ const PredictPage: React.FC = () => {
               value={formik.values[key as keyof RiceInput]}
               onChange={formik.handleChange}
               step="any"
-              className="w-full border border-gray-300 rounded px-3 py-1"
+              className="w-full border border-gray-300 rounded px-3 py-1 bg-white"
               required
             />
             {formik.touched[key as keyof RiceInput] &&
@@ -197,11 +197,11 @@ const PredictPage: React.FC = () => {
           </div>
         ))}
         <div>
-          <label className="block font-medium">Chọn mô hình:</label>
+          <label className="block font-medium text-white">Chọn mô hình:</label>
           <select
             value={model}
             onChange={(e) => setModel(e.target.value)}
-            className="w-full border px-3 py-1 rounded"
+            className="w-full border border-gray-300 rounded px-3 py-1 bg-white"
           >
             {modelOptions.map((opt) => (
               <option key={opt.value} value={opt.value}>
