@@ -170,7 +170,7 @@ const PredictPage: React.FC = () => {
   }, [formik.errors, formik.touched]);
 
   return (
-    <div className="max-w-xl mx-auto p-6 space-y-4">
+    <div className="max-w-xl mx-auto p-6 space-y-4 text-[#333333]">
 
       <h2 className="text-2xl font-bold mb-4 text-center">Dự đoán loại gạo</h2>
       <form onSubmit={formik.handleSubmit} className="space-y-4">
