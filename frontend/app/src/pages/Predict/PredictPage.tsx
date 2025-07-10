@@ -172,11 +172,11 @@ const PredictPage: React.FC = () => {
   return (
     <div className="max-w-xl mx-auto p-6 space-y-4">
 
-      <h2 className="text-2xl font-bold mb-4 text-center text-white">Dự đoán loại gạo</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center">Dự đoán loại gạo</h2>
       <form onSubmit={formik.handleSubmit} className="space-y-4">
         {inputs.map(({ key, name, desc, hint }) => (
           <div key={key}>
-            <label className="block capitalize font-medium text-white" title={desc}>
+            <label className="block capitalize font-medium" title={desc}>
               {name} ({hint}):
             </label>
             <input
@@ -197,7 +197,7 @@ const PredictPage: React.FC = () => {
           </div>
         ))}
         <div>
-          <label className="block font-medium text-white">Chọn mô hình:</label>
+          <label className="block font-medium">Chọn mô hình:</label>
           <select
             value={model}
             onChange={(e) => setModel(e.target.value)}

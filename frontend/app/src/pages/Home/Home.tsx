@@ -1,7 +1,7 @@
 // src/pages/Home.tsx
 import { useEffect} from 'react';
 import axiosClient from '../../config/axios';
-import HomeBanner from '../../components/home/homeBanner';
+import HomeBanner from '../../components/home/HomeBanner';
 import IntroRiceComponent from '../../components/home/IntroRiceComponent';
 import VariablesTableComponent from '../../components/home/VariablesTableComponent';
 

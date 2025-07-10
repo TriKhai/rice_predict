@@ -5,8 +5,8 @@ const IntroRiceComponent = () => {
   return (
     <Parallax opacity={[0, 2]} startScroll={300} endScroll={800}>
         <Parallax opacity={[1, 0]}  startScroll={900} endScroll={1200}>
-            <p className="text-[30px] text-center m-10 font-bold">Tổng quan về 2 loại gạo Cammeo và Osmancik</p>
-            <div className="h-screen md:grid md:grid-cols-2 ">
+            <p className="text-4xl text-center m-10 font-bold text-[#333333] p-5">Tổng quan về 2 loại gạo Cammeo và Osmancik</p>
+            <div className="h-screen md:grid md:grid-cols-2 text-[#333333]">
                 <div className="text-3xl text-justify">
                     Trong số các loại gạo đã được chứng nhận được trồng ở Thổ Nhĩ Kỳ, giống Osmancik
                     với diện tích gieo trồng lớn kể từ năm 1997 và giống Cammeo được trồng từ năm 2014 

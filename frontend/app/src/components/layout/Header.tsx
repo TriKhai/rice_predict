@@ -6,7 +6,7 @@ const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-sky-500 text-white shadow-md w-full fixed z-99">
+    <header className="bg-[#6AA84F] text-white shadow-md w-full fixed z-99">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         <Link to="/" className="text-xl font-bold">
           Rice Predictor

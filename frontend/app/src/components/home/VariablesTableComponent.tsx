@@ -13,8 +13,8 @@ const VariablesTableComponent = () => {
   
   return (
     <Parallax speed={0} opacity={[0, 2]} startScroll={1100} endScroll={1500}>
-        <p className="text-3xl text-center m-10 font-bold">Bảng thông tin các thuộc tính</p>
-        <div className=" overflow-y-auto px-4">
+        <p className="text-3xl text-center m-10 font-bold text-[#333333]">Bảng thông tin các thuộc tính</p>
+        <div className=" overflow-y-auto px-4 text-[#333333]">
             <table className="w-full border m-auto text-xl">
                 <thead className="bg-gray-100 text-left">
                 <tr>
