@@ -12,22 +12,49 @@ def predict_adaboost():
         df = wrap_with_column_names(features)
         result = adaboost_model.predict(df)[0]
 
-        predict = "O"
-        if (result == 0):
-            predict = "C"
+        predict = "Cammeo" if result == 0 else "Osmancik"
+
+        proba = adaboost_model.predict_proba(df)[0]
+        classes = adaboost_model.classes_
+        prob_dict = (
+            {"Cammeo": float(proba[0]), "Osmancik": float(proba[1])}
+            if classes[0] == 0
+            else {"Osmancik": float(proba[0]), "Cammeo": float(proba[1])}
+        )
+
+        feature_names = [
+            "Area", "Convex_Area", "Eccentricity", "Extent",
+            "Major_Axis_Length", "Minor_Axis_Length", "Perimeter"
+        ]
+        importances = adaboost_model.feature_importances_
+        feature_importance_dict = {
+            feature: float(imp)
+            for feature, imp in zip(feature_names, importances)
+        }
+
+        # Lấy hyperparameters
+        hyperparameters = {
+            "algorithm": adaboost_model.algorithm,
+            "learning_rate": adaboost_model.learning_rate,
+            "n_estimators": adaboost_model.n_estimators
+        }
 
         return jsonify({
             "success": True,
             "data": {
-                "model": "Adaboost",
+                "model": "AdaBoost",
                 "input": data,
-                "prediction": predict
+                "prediction": predict,
+                "probabilities": prob_dict,
+                "hyperparameters": hyperparameters,
+                "feature_importances": feature_importance_dict
             },
             "message": "Dự đoán thành công"
         }), 200
+
     except Exception as e:
-        return jsonify({
-            "success": False,
-            "data": None,
-            "message": str(e)
-        }), 400
+            return jsonify({
+                "success": False,
+                "data": None,
+                "message": str(e)
+            }), 400

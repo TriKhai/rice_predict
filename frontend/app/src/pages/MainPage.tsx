@@ -6,12 +6,12 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 
 const MainPage: React.FC = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-[#FAF3E0]">
+    <div className="font-sans flex flex-col min-h-screen bg-white text-black dark:bg-[#030712] dark:text-white">
       <ParallaxProvider>
         <Header />
-        <div className="flex-1 container mx-auto mt-10">
-          <Outlet /> 
-        </div>
+        <main className="flex-1 w-full px-4 sm:px-6 lg:px-8 max-w-screen-xl mx-auto mt-6">
+          <Outlet />
+        </main>
         <Footer />
       </ParallaxProvider>
     </div>

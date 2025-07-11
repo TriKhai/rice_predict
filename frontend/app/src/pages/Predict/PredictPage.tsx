@@ -1,7 +1,18 @@
 import { useEffect, useState } from "react";
-import type { RiceInput, ApiResponse } from "../../types/rice";
+import type { RiceInput } from "../../types/rice";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import ModelSummary from "../../components/predict/ModelSummary";
+import FeatureDetail from "../../components/predict/FeatureDetail";
+import type { AdaBoostResponseData, ApiRes, DTResponseData, KNNResponseData, LRResponseData, MLPResponseData, NBResponseData, RFResponseData, SVMResponseData } from "../../types/api";
+import KnnDetailResult from "../../components/predict/KnnDetailResult";
+import NbDetailResult from "../../components/predict/NbDetailResult";
+import DtDetailResult from "../../components/predict/DtDetailResult";
+import RfDetailResult from "../../components/predict/RfDetailResult";
+import LogisticRDetailResult from "../../components/predict/LogisticRDetailResult";
+import SvmDetailResult from "../../components/predict/SvmDetailResult";
+import AdaboostDetailResult from "../../components/predict/AdaboostDetailResult";
+import MlpDetailResult from "../../components/predict/MlpDetailResult";
 
 const defaultForm: RiceInput = {
   area: 0,
@@ -73,13 +84,17 @@ const PredictSchema = Yup.object().shape({
 const PredictPage: React.FC = () => {
   const [model, setModel] = useState<string>("k-nearest-neighbors");
   const [result, setResult] = useState<string | null>(null);
-  const [err, setErr] = useState<string | null>(null)
+  const [dataRes, setDataRes] = useState<ApiRes | null>(null);
+
+  const [err, setErr] = useState<string | null>(null);
+  const [showModelSummary, setShowModelSummary] = useState(false);
+  const [showFeatureDetail, setShowFeatureDetail] = useState(false);
 
   const modelOptions: ModelType[] = [
     { value: "k-nearest-neighbors", label: "K-Nearest Neighbors" },
     { value: "naive-bayes", label: "Naive Bayes" },
     { value: "decision-tree", label: "Decision Tree" },
-    { value: "random-forest", label: "Random Forest" },
+    { value: "random-forest", label: "Randosm Forest" },
     { value: "support-vector-machine", label: "SVM (Support Vector Machine)" },
     { value: "logistic-regression", label: "Logistic Regression" },
     { value: "multilayer-perceptron", label: "Multilayer Perceptron" },
@@ -145,92 +160,257 @@ const PredictPage: React.FC = () => {
           }
         );
 
-        const data: ApiResponse = await res.json();
-
+        // const data: ApiResponse = await res.json();
+        const data: ApiRes = await res.json();
         if (data.success) {
-          setResult(`Kết quả: Gạo trên thuộc loại gạo ${data.data?.prediction == 'C' ? "Cammeo" : "Osmancik"}`);
-          setErr(null)
+          setDataRes(data);
+          setResult(
+            `Kết quả: Gạo trên thuộc loại gạo ${
+              data.data?.prediction
+            }`
+          );
+          setErr(null);
         } else {
           setResult(null);
-          setErr(`Lỗi: ${data.message}`)
+          setErr(`Lỗi: ${data.message}`);
         }
       } catch (err) {
         setErr("Không thể kết nối đến máy chủ");
-        setResult(null)
+        setResult(null);
         console.log(err);
       }
     },
   });
 
   useEffect(() => {
-    if (Object.keys(formik.errors).length > 0 && Object.keys(formik.touched).length > 0) {
+    if (
+      Object.keys(formik.errors).length > 0 &&
+      Object.keys(formik.touched).length > 0
+    ) {
       setErr("Vui lòng kiểm tra lại các trường nhập liệu!");
       setResult(null);
     }
   }, [formik.errors, formik.touched]);
 
+  const fillRandomValues = () => {
+    const random = (min: number, max: number, precision = 2) =>
+      parseFloat((Math.random() * (max - min) + min).toFixed(precision));
+
+    const randomValues: RiceInput = {
+      area: random(7000, 20000, 0),
+      perimeter: random(300, 600, 0),
+      major_axis_length: random(100, 300),
+      minor_axis_length: random(50, 150),
+      eccentricity: random(0, 1),
+      convex_area: random(7000, 20000, 0),
+      extent: random(0, 1),
+    };
+
+    formik.setValues(randomValues);
+    setErr(null);
+    setResult(null);
+  };
+
+  const clearForm = () => {
+    formik.resetForm(); // Reset về initialValues
+    setResult(null);
+    setErr(null);
+  };
+
+  const renderModelDetail = () => {
+    if (!result || !dataRes?.data) return null;
+
+    switch (dataRes?.data.model) {
+      case "K-Nearest Neighbors":
+        return <KnnDetailResult data={dataRes?.data as KNNResponseData} />;
+      case "Naive Bayes":
+        return <NbDetailResult data={dataRes?.data as NBResponseData} />;
+      case "Random Forest":
+        return <RfDetailResult data={dataRes?.data as RFResponseData} />;
+      case "Decision Tree":
+        return <DtDetailResult data={dataRes?.data as DTResponseData} />;
+      case "Logistic Regression":
+        return <LogisticRDetailResult data={dataRes?.data as LRResponseData} />;
+      case "SVM (Support Vector Machine)":
+        return <SvmDetailResult data={dataRes?.data as SVMResponseData} />;
+      case "AdaBoost":
+        return <AdaboostDetailResult data={dataRes?.data as AdaBoostResponseData} />;
+      case "Multilayer Perceptron":
+        return <MlpDetailResult data={dataRes?.data as MLPResponseData} />;
+
+      default:
+        return <p>Không hỗ trợ mô hình này.</p>;
+    }
+  };
+
+
   return (
-    <div className="max-w-xl mx-auto p-6 space-y-4 text-[#333333]">
+    <>
+      <div className="max-w-6xl mx-auto mt-20 p-6 space-y-6 bg-[#f7f7f8] dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
+        <h2 className="text-2xl font-bold text-center ">
+          Dự đoán loại gạo Cammeo & Osmancik
+        </h2>
 
-      <h2 className="text-2xl font-bold mb-4 text-center">Dự đoán loại gạo</h2>
-      <form onSubmit={formik.handleSubmit} className="space-y-4">
-        {inputs.map(({ key, name, desc, hint }) => (
-          <div key={key}>
-            <label className="block capitalize font-medium" title={desc}>
-              {name} ({hint}):
-            </label>
-            <input
-              type="number"
-              name={key}
-              value={formik.values[key as keyof RiceInput]}
-              onChange={formik.handleChange}
-              step="any"
-              className="w-full border border-gray-300 rounded px-3 py-1 bg-white"
-              required
-            />
-            {formik.touched[key as keyof RiceInput] &&
-            formik.errors[key as keyof RiceInput] ? (
-              <div style={{ color: "red" }}>
-                {formik.errors[key as keyof RiceInput]}
+        <div className="flex flex-col lg:flex-row gap-6">
+          <div className="lg:w-2/3 space-y-6">
+            <form onSubmit={formik.handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                {inputs.map(({ key, name, desc, hint }) => (
+                  <div key={key}>
+                    <label
+                      className="block capitalize font-medium"
+                      title={desc}
+                    >
+                      {name} ({hint}):
+                    </label>
+                    <input
+                      type="number"
+                      name={key}
+                      value={formik.values[key as keyof RiceInput]}
+                      onChange={formik.handleChange}
+                      step="any"
+                      className="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 bg-white dark:bg-[#1E2939] text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-400 no-spinner"
+                      required
+                    />
+                    {formik.touched[key as keyof RiceInput] &&
+                    formik.errors[key as keyof RiceInput] ? (
+                      <div className="text-sm text-[#fda4af]">
+                        {formik.errors[key as keyof RiceInput]}
+                      </div>
+                    ) : null}
+                  </div>
+                ))}
               </div>
-            ) : null}
+
+              <div>
+                <label className="block font-medium">Chọn mô hình:</label>
+                <select
+                  value={model}
+                  onChange={(e) => setModel(e.target.value)}
+                  className="w-full border border-gray-600 dark:border-gray-600 rounded px-3 py-2 bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-400"
+                >
+                  {modelOptions.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button
+                  type="button"
+                  onClick={fillRandomValues}
+                  className="px-4 py-2 rounded border  bg-gray-100 dark:bg-white text-gray-800 dark:text-black hover:bg-gray-200 dark:hover:bg-[#0F1727] dark:hover:text-white
+             transition-colors duration-200 w-full md:w-auto "
+                >
+                  Random
+                </button>
+
+                <button
+                  type="button"
+                  onClick={clearForm}
+                  className="px-4 py-2 rounded border  bg-gray-100 dark:bg-white text-gray-800 dark:text-black hover:bg-gray-200 dark:hover:bg-[#0F1727] dark:hover:text-white
+             transition-colors duration-200 w-full md:w-auto"
+                >
+                  Reset
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setShowModelSummary(!showModelSummary)}
+                  className={`px-4 py-2 rounded border transition-colors duration-200 w-full md:w-auto ${
+                    showModelSummary
+                      ? "bg-[#0F1727] dark:bg-gray-800 text-white dark:text-gray-200 hover:bg-gray-800 dark:hover:bg-gray-700"
+                      : "bg-gray-100 dark:bg-white text-gray-800 dark:text-black hover:bg-gray-200 dark:hover:bg-[#0F1727] dark:hover:text-white"
+                  }`}
+                >
+                  Algorithms
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setShowFeatureDetail(!showFeatureDetail)}
+                  className={`px-4 py-2 rounded border transition-colors duration-200 w-full md:w-auto ${
+                    showFeatureDetail
+                      ? "bg-[#0F1727] dark:bg-gray-800 text-white dark:text-gray-200 hover:bg-gray-800 dark:hover:bg-gray-700"
+                      : "bg-gray-100 dark:bg-white text-gray-800 dark:text-black hover:bg-gray-200 dark:hover:bg-[#0F1727] dark:hover:text-white"
+                  }`}
+                >
+                  Features
+                </button>
+
+                <button
+                  type="submit"
+                  className={`
+              px-4 py-2 rounded transition-colors duration-200 border w-full sm:w-auto
+              ${
+                formik.isValid && formik.dirty
+                  ? "bg-blue-500 text-black border-gray-400 hover:bg-blue-50 dark:bg-green-200 dark:text-black dark:border-white dark:hover:text-gray-950  dark:hover:bg-green-400"
+                  : "bg-[#fda4af] text-white border-transparent hover:bg-white hover:text-black dark:bg-[#fda4af] dark:border-white dark:text-black dark:hover:text-white dark:hover:bg-red-500 cursor-pointer"
+              }
+              disabled:opacity-50 disabled:cursor-not-allowed
+            `}
+                >
+                  Predict
+                </button>
+              </div>
+            </form>
           </div>
-        ))}
-        <div>
-          <label className="block font-medium">Chọn mô hình:</label>
-          <select
-            value={model}
-            onChange={(e) => setModel(e.target.value)}
-            className="w-full border border-gray-300 rounded px-3 py-1 bg-white"
-          >
-            {modelOptions.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            ))}
-          </select>
-        </div>
 
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Dự đoán
-        </button>
-      </form>
+          <div className="lg:w-1/3 space-y-4">
+            <h3 className="text-xl font-semibold">Kết quả</h3>
 
-      {result && (
-        <div className="mt-4 p-3 border rounded bg-green-100 text-green-700 border-green-400 font-medium">
-          {result}
-        </div>
-      )}
+            {result && (
+              <div className="p-4 border rounded bg-green-100 text-green-700 border-green-400 font-medium">
+                {result}
+              </div>
+            )}
 
-      {err && (
-        <div className="mt-4 p-3 border rounded bg-red-100 text-red-700 border-red-400 font-medium">
-          {err}
+            {err && (
+              <div className="p-4 border rounded bg-red-100 text-red-700 border-red-400 font-medium">
+                {err}
+              </div>
+            )}
+
+            {!result && !err && (
+              <div className="text-gray-500 italic">
+                Chưa có kết quả nào được hiển thị. Vui lòng nhập thông tin và
+                chọn mô hình.
+              </div>
+            )}
+
+            <div className="text-sm text-gray-600 dark:text-gray-300">
+              <p className="mb-2">Gợi ý:</p>
+              <ul className="list-disc list-inside space-y-1">
+                <li>
+                  Nhập các giá trị cho thuộc tính, sau đó chọn mô hình rồi nhấn
+                  "Predict".
+                </li>
+                <li>Nút "Random" giúp tự động điền ngẫu nhiên các tham số.</li>
+                <li>
+                  Nút "Reset" sẽ giúp các thuộc tính tự động được làm mới.
+                </li>
+                <li>
+                  Nút "Algorithms" hiển thị thông tin các mô hình của hệ thống.
+                </li>
+                <li>Nút "Features" hiển thị thông tin các thuộc tính.</li>
+                <li>
+                  Kết quả là tên loại gạo Cammeo & Osmancik dựa vào thuật toán
+                  bạn chọn.
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-      )}
-    </div>
+      </div>
+
+      {showModelSummary && <ModelSummary />}
+      {showFeatureDetail && <FeatureDetail />}
+
+      {renderModelDetail()}
+
+    </>
   );
 };
 

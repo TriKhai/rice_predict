@@ -10,20 +10,47 @@ def predict_rf():
         data = request.json
         features = extract_features(data)
         df = wrap_with_column_names(features)
+
         result = random_forest_model.predict(df)[0]
 
-        predict = "O"
-        if (result == 0):
-            predict = "C"
+        probabilities = random_forest_model.predict_proba(df)[0]
+        classes = random_forest_model.classes_
 
+        prob_dict = {
+            "Cammeo": float(probabilities[0]),
+            "Osmancik": float(probabilities[1])
+        } if classes[0] == 0 else {
+            "Osmancik": float(probabilities[0]),
+            "Cammeo": float(probabilities[1])
+        }
+
+        hyperparams = {
+            "n_estimators": random_forest_model.n_estimators,
+            "max_depth": random_forest_model.max_depth,
+            "min_samples_split": random_forest_model.min_samples_split,
+            "min_samples_leaf": random_forest_model.min_samples_leaf,
+        }
+
+        predict = "Cammeo" if result == 0 else "Osmancik"
+
+        feature_importances = random_forest_model.feature_importances_
+        feature_names = df.columns.tolist()
+
+        importances_dict = {
+            name: float(importance)
+            for name, importance in zip(feature_names, feature_importances)
+        }
         return jsonify({
             "success": True,
+            "message": "Dự đoán thành công",
             "data": {
                 "model": "Random Forest",
                 "input": data,
-                "prediction": predict
-            },
-            "message": "Dự đoán thành công"
+                "prediction": predict,
+                "probabilities": prob_dict,
+                "hyperparameters": hyperparams,
+                "feature_importances": importances_dict,
+            }
         }), 200
     except Exception as e:
         return jsonify({
