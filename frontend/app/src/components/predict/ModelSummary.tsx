@@ -85,13 +85,19 @@ const ModelSummaryAll: React.FC = () => {
           <tbody>
             {modelInfos.map(({ key, name, abbr, desc, link }) => (
               <tr
-                    key={key}
-                    className="hover:bg-gray-100 dark:hover:bg-gray-800"
-                    onClick={() => window.open(link, "_blank")}
-                >
-                    <td className="border dark:border-gray-600 px-4 py-2 font-medium text-lg">{abbr}</td>
-                    <td className="border dark:border-gray-600 px-4 py-2 text-lg">{name}</td>
-                    <td className="border dark:border-gray-600 px-4 py-2 text-lg">{desc}</td>
+                key={key}
+                className="hover:bg-gray-100 dark:hover:bg-gray-800"
+                onClick={() => window.open(link, "_blank")}
+              >
+                <td className="border dark:border-gray-600 px-4 py-2 font-medium text-lg">
+                  {abbr}
+                </td>
+                <td className="border dark:border-gray-600 px-4 py-2 text-lg">
+                  {name}
+                </td>
+                <td className="border dark:border-gray-600 px-4 py-2 text-lg">
+                  {desc}
+                </td>
               </tr>
             ))}
           </tbody>

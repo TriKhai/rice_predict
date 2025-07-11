@@ -9,7 +9,7 @@ const ModelInputInfo: React.FC<ModelInputInfoProps> = ({ inputs }) => {
 
   return (
     <div className="max-w-6xl mx-auto mt-5 p-6 bg-[#f7f7f8] dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
-      <h3 className="text-xl font-semibold mb-4">Dầu vào của mô hình</h3>
+      <h3 className="text-xl font-semibold mb-4">Đầu vào của mô hình</h3>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {entries.map(([key, value], index) => (

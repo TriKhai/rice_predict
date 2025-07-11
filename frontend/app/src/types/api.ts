@@ -91,8 +91,16 @@ export interface AdaBoostResponseData {
   model: string;
   input: Record<string, number>;
   prediction: string;
-  n_estimators?: number;
-  feature_importances?: Record<string, number>;
+  probabilities: {
+    Cammeo: number;
+    Osmancik: number;
+  };
+  feature_importances: Record<string, number>;
+  hyperparameters: {
+    algorithm: string,
+    learning_rate: number,
+    n_estimators: number
+  }
 }
 
 export interface MLPResponseData {

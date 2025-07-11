@@ -81,6 +81,14 @@ const FeatureDetail: React.FC = () => {
           </tbody>
         </table>
       </div>
+      <div>
+        <ul className="space-y-4 text-sm md:text-base">
+          <li>
+            <strong>Class:</strong> Tên loại gạo cần phân loại – gồm hai nhãn
+            chính là <em>Cammeo</em> và <em>Osmancik</em>.
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
