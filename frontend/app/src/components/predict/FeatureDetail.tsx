@@ -38,12 +38,6 @@ const features: Feature[] = [
     range: "0 – 1",
   },
   {
-    name: "Convex area",
-    description: "Diện tích vùng bao lồi",
-    range: "7000 – 20000",
-    unit: "px",
-  },
-  {
     name: "Extent",
     description: "Tỷ lệ diện tích thật / hình chữ nhật bao ngoài",
     range: "0 – 1",

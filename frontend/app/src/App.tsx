@@ -9,13 +9,12 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Navigate to="/home" replace />} />
           <Route element={<MainPage />}>
-              <Route path="/home" element={<HomePage />} /> 
+              <Route path="/" element={<HomePage />} /> 
               <Route path="/predict" element={<PredictPage />} /> 
           </Route>
 
-          <Route path="*" element={<Navigate to="/home" replace />}/>
+          <Route path="*" element={<Navigate to="/" replace />}/>
         </Routes>
       </Router>
     </>

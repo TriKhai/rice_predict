@@ -30,7 +30,6 @@ const defaultForm: RiceInput = {
   major_axis_length: 0,
   minor_axis_length: 0,
   eccentricity: 0,
-  convex_area: 0,
   extent: 0,
 };
 
@@ -76,12 +75,6 @@ const PredictSchema = Yup.object().shape({
     .positive("Giá trị âm không hợp lệ")
     .min(0, "Giá trị trong khoảng (0-1)")
     .max(1, "Giá trị trong khoảng (0-1)")
-    .required("Vui lòng nhập giá trị"),
-  convex_area: Yup.number()
-    .typeError("Vui lòng nhập số")
-    .positive("Giá trị âm không hợp lệ")
-    .min(7000, "Giá trị trong khoảng (7000-20000px)")
-    .max(20000, "Giá trị trong khoảng (7000-20000px)")
     .required("Vui lòng nhập giá trị"),
   extent: Yup.number()
     .typeError("Vui lòng nhập số")
@@ -141,12 +134,6 @@ const PredictPage: React.FC = () => {
       name: "Eccentricity",
       desc: "Độ lệch tâm của hạt gạo",
       hint: "0 - 1",
-    },
-    {
-      key: "convex_area",
-      name: "Convex area",
-      desc: "Diện tích của hình bao lồi (px)",
-      hint: "7000 - 20000px",
     },
     {
       key: "extent",
@@ -210,7 +197,6 @@ const PredictPage: React.FC = () => {
       major_axis_length: random(100, 300),
       minor_axis_length: random(50, 150),
       eccentricity: random(0, 1),
-      convex_area: random(7000, 20000, 0),
       extent: random(0, 1),
     };
 
