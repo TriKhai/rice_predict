@@ -383,13 +383,13 @@ const PredictPage: React.FC = () => {
             )}
 
             {!result && !err && (
-              <div className="text-gray-500 italic">
+              <div className="text-gray-500 dark:text-gray-400 italic">
                 Chưa có kết quả nào được hiển thị. Vui lòng nhập thông tin và
                 chọn mô hình.
               </div>
             )}
 
-            <div className="text-sm text-800 dark:text-gray-600 dark:text-gray-300">
+            <div className="text-sm text-800 text-gray-800 dark:text-gray-200">
               <p className="mb-2">Gợi ý:</p>
               <ul className="list-disc list-inside space-y-1">
                 <li>

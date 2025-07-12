@@ -8,10 +8,10 @@ CORS(app, origins="*")
 def hello_world():  # put application's code here
     return 'Hello World! Kết nối backend thành công'
 
-@app.route("/predict", methods=["POST"])
-def predict():
-    data = request.json
-    return jsonify({"prediction": data})
+# @app.route("/predict", methods=["POST"])
+# def predict():
+#     data = request.json
+#     return jsonify({"prediction": data})
 
 # import routes
 from routes import register_router
