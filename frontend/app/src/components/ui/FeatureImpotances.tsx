@@ -6,7 +6,7 @@ interface FTProps {
 
 const FeatureImportances: React.FC<FTProps> = ({ feature_importances }) => {
   return (
-    <div className="max-w-6xl mx-auto mt-6 space-y-6 bg-[#f7f7f8] dark:bg-[#0F1727] text-black dark:text-white rounded-2xl p-6 border dark:border-gray-700 transition-colors duration-300">
+    <div className="max-w-6xl mx-auto mt-6 space-y-6 bg-gray-200 dark:bg-[#0F1727] text-black dark:text-white rounded-2xl p-6 dark:border dark:border-gray-700 transition-colors duration-300">
       <div>
         <div>
           <h3 className="font-semibold text-lg mb-2">
@@ -21,7 +21,7 @@ const FeatureImportances: React.FC<FTProps> = ({ feature_importances }) => {
                     <span>{feature}</span>
                     <span>{(value * 100).toFixed(2)}%</span>
                   </div>
-                  <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-4">
+                  <div className="w-full bg-gray-400 dark:bg-gray-700 rounded-full h-4">
                     <div
                       className="h-4 rounded-full bg-[#7dd3fc] transition-all duration-500"
                       style={{ width: `${value * 100}%` }}

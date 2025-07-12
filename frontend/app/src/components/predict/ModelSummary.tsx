@@ -69,33 +69,33 @@ const modelInfos: ModelInfo[] = [
 
 const ModelSummaryAll: React.FC = () => {
   return (
-    <div className="max-w-6xl mx-auto mt-5 p-6 bg-[#f7f7f8] dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
+    <div className="max-w-6xl mx-auto mt-5 p-6 bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
       <h2 className="text-2xl font-bold text-center mb-4">
         Tóm tắt các giải thuật
       </h2>
-      <div className="overflow-x-auto rounded-xl overflow-hidden border border-gray-300 dark:border-gray-600">
-        <table className="w-full table-auto text-sm">
-          <thead className="bg-gray-200 dark:bg-gray-700 text-left">
+      <div className="overflow-x-auto rounded-xl overflow-hidden border border-black dark:border-gray-600">
+        <table className="w-full table-auto text-xs sm:text-sm md:text-base">
+          <thead className="bg-gray-300 dark:bg-gray-700 text-left">
             <tr>
               <th className="px-4 py-2 w-1/6">Viết tắt</th>
               <th className="px-4 py-2 w-1/4">Tên giải thuật</th>
               <th className="px-4 py-2">Mô tả</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="dark:bg-[#0F1727] bg-white">
             {modelInfos.map(({ key, name, abbr, desc, link }) => (
               <tr
                 key={key}
-                className="hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
                 onClick={() => window.open(link, "_blank")}
               >
-                <td className="border dark:border-gray-600 px-4 py-2 font-medium text-lg">
+                <td className="border dark:border-gray-600 px-4 py-2 font-medium text-sm sm:text-base md:text-lg">
                   {abbr}
                 </td>
-                <td className="border dark:border-gray-600 px-4 py-2 text-lg">
+                <td className="border dark:border-gray-600 px-4 py-2 text-sm sm:text-base md:text-lg">
                   {name}
                 </td>
-                <td className="border dark:border-gray-600 px-4 py-2 text-lg">
+                <td className="border dark:border-gray-600 px-4 py-2 text-sm sm:text-base md:text-lg">
                   {desc}
                 </td>
               </tr>

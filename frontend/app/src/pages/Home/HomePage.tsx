@@ -6,7 +6,7 @@ import FeatureDetail from "../../components/predict/FeatureDetail";
 const HomePage: React.FC = () => {
   return (
     <>
-      <div className="max-w-6xl mx-auto mt-20 p-6 space-y-6 bg-[#f7f7f8] dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
+      <div className="max-w-6xl mx-auto mt-20 p-6 space-y-6 bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
         <div className="max-w-6xl mx-auto space-y-10">
           {/* Intro */}
           <h1 className="text-2xl md:text-3xl font-bold text-center">
@@ -49,10 +49,12 @@ const HomePage: React.FC = () => {
         <div>
           <FeatureDetail />
         </div>
-        <ModelSummaryAll />
+        <div>
+          <ModelSummaryAll />
+        </div>
       </div>
 
-      <div className="max-w-6xl mx-auto mt-10 p-6 space-y-1 bg-[#f7f7f8] dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
+      <div className="max-w-6xl mx-auto mt-10 p-6 space-y-1 bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
         <div className="max-w-6xl mx-auto space-y-5">
           {/* Intro */}
           <h1 className="text-2xl md:text-3xl font-bold text-center">Tác giả</h1>

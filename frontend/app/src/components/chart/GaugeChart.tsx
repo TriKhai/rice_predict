@@ -29,7 +29,7 @@ const GaugeChart: React.FC<GaugeChartProps> = ({ value, label }) => {
             isAnimationActive={false}
             cornerRadius={5}
           >
-            <Cell fill="#1F2937" />
+            <Cell fill="#364153" />
           </Pie>
 
           <Pie
@@ -53,13 +53,14 @@ const GaugeChart: React.FC<GaugeChartProps> = ({ value, label }) => {
             textAnchor="middle"
             dominantBaseline="middle"
             fontSize={18}
-            fill="#fff"
+            fill="#7dd3fc"
+            fontWeight="bold"
           >
             {value.toFixed(2)}%
           </text>
         </PieChart>
 
-        <p className="absolute top-[110px] left-1/2 -translate-x-1/2 text-sm text-white">
+        <p className="absolute top-[110px] left-1/2 -translate-x-1/2 text-sm text-black dark:text-white">
           {label}
         </p>
       </div>

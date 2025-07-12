@@ -4,7 +4,17 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import ModelSummary from "../../components/predict/ModelSummary";
 import FeatureDetail from "../../components/predict/FeatureDetail";
-import type { AdaBoostResponseData, ApiRes, DTResponseData, KNNResponseData, LRResponseData, MLPResponseData, NBResponseData, RFResponseData, SVMResponseData } from "../../types/api";
+import type {
+  AdaBoostResponseData,
+  ApiRes,
+  DTResponseData,
+  KNNResponseData,
+  LRResponseData,
+  MLPResponseData,
+  NBResponseData,
+  RFResponseData,
+  SVMResponseData,
+} from "../../types/api";
 import KnnDetailResult from "../../components/predict/KnnDetailResult";
 import NbDetailResult from "../../components/predict/NbDetailResult";
 import DtDetailResult from "../../components/predict/DtDetailResult";
@@ -165,9 +175,7 @@ const PredictPage: React.FC = () => {
         if (data.success) {
           setDataRes(data);
           setResult(
-            `Kết quả: Gạo trên thuộc loại gạo ${
-              data.data?.prediction
-            }`
+            `Kết quả: Gạo trên thuộc loại gạo ${data.data?.prediction}`
           );
           setErr(null);
         } else {
@@ -234,7 +242,9 @@ const PredictPage: React.FC = () => {
       case "SVM (Support Vector Machine)":
         return <SvmDetailResult data={dataRes?.data as SVMResponseData} />;
       case "AdaBoost":
-        return <AdaboostDetailResult data={dataRes?.data as AdaBoostResponseData} />;
+        return (
+          <AdaboostDetailResult data={dataRes?.data as AdaBoostResponseData} />
+        );
       case "Multilayer Perceptron":
         return <MlpDetailResult data={dataRes?.data as MLPResponseData} />;
 
@@ -243,10 +253,9 @@ const PredictPage: React.FC = () => {
     }
   };
 
-
   return (
     <>
-      <div className="max-w-6xl mx-auto mt-20 p-6 space-y-6 bg-[#f7f7f8] dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
+      <div className="max-w-6xl mx-auto mt-20 p-6 space-y-6 bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
         <h2 className="text-2xl font-bold text-center ">
           Dự đoán loại gạo Cammeo & Osmancik
         </h2>
@@ -301,7 +310,7 @@ const PredictPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={fillRandomValues}
-                  className="px-4 py-2 rounded border  bg-gray-100 dark:bg-white text-gray-800 dark:text-black hover:bg-gray-200 dark:hover:bg-[#0F1727] dark:hover:text-white
+                  className="px-4 py-2 rounded border bg-gray-100 dark:bg-[#0F1727] text-gray-800 dark:text-white hover:bg-[#0F1727] hover:text-white dark:hover:bg-white dark:hover:text-black
              transition-colors duration-200 w-full md:w-auto "
                 >
                   Random
@@ -310,7 +319,7 @@ const PredictPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={clearForm}
-                  className="px-4 py-2 rounded border  bg-gray-100 dark:bg-white text-gray-800 dark:text-black hover:bg-gray-200 dark:hover:bg-[#0F1727] dark:hover:text-white
+                  className="px-4 py-2 rounded border bg-gray-100 dark:bg-[#0F1727] text-gray-800 dark:text-white hover:bg-[#0F1727] hover:text-white dark:hover:bg-white dark:hover:text-black
              transition-colors duration-200 w-full md:w-auto"
                 >
                   Reset
@@ -321,8 +330,8 @@ const PredictPage: React.FC = () => {
                   onClick={() => setShowModelSummary(!showModelSummary)}
                   className={`px-4 py-2 rounded border transition-colors duration-200 w-full md:w-auto ${
                     showModelSummary
-                      ? "bg-[#0F1727] dark:bg-gray-800 text-white dark:text-gray-200 hover:bg-gray-800 dark:hover:bg-gray-700"
-                      : "bg-gray-100 dark:bg-white text-gray-800 dark:text-black hover:bg-gray-200 dark:hover:bg-[#0F1727] dark:hover:text-white"
+                      ? "bg-[#0F1727] dark:bg-white text-white dark:text-gray-800 hover:bg-gray-100 hover:text-black dark:hover:bg-[#0F1727] dark:hover:text-white"
+                      : "bg-gray-100 dark:bg-[#0F1727] text-gray-800 dark:text-white hover:bg-[#0F1727] hover:text-white dark:hover:bg-white dark:hover:text-black"
                   }`}
                 >
                   Algorithms
@@ -333,8 +342,8 @@ const PredictPage: React.FC = () => {
                   onClick={() => setShowFeatureDetail(!showFeatureDetail)}
                   className={`px-4 py-2 rounded border transition-colors duration-200 w-full md:w-auto ${
                     showFeatureDetail
-                      ? "bg-[#0F1727] dark:bg-gray-800 text-white dark:text-gray-200 hover:bg-gray-800 dark:hover:bg-gray-700"
-                      : "bg-gray-100 dark:bg-white text-gray-800 dark:text-black hover:bg-gray-200 dark:hover:bg-[#0F1727] dark:hover:text-white"
+                      ? "bg-[#0F1727] dark:bg-white text-white dark:text-gray-800 hover:bg-gray-100 hover:text-black dark:hover:bg-[#0F1727] dark:hover:text-white"
+                      : "bg-gray-100 dark:bg-[#0F1727] text-gray-800 dark:text-white hover:bg-[#0F1727] hover:text-white dark:hover:bg-white dark:hover:text-black"
                   }`}
                 >
                   Features
@@ -346,8 +355,8 @@ const PredictPage: React.FC = () => {
               px-4 py-2 rounded transition-colors duration-200 border w-full sm:w-auto
               ${
                 formik.isValid && formik.dirty
-                  ? "bg-blue-500 text-black border-gray-400 hover:bg-blue-50 dark:bg-green-200 dark:text-black dark:border-white dark:hover:text-gray-950  dark:hover:bg-green-400"
-                  : "bg-[#fda4af] text-white border-transparent hover:bg-white hover:text-black dark:bg-[#fda4af] dark:border-white dark:text-black dark:hover:text-white dark:hover:bg-red-500 cursor-pointer"
+                  ? "bg-green-500 text-white border-transparent hover:bg-green-300 hover:text-black dark:bg-green-200 dark:text-black dark:border-white dark:hover:text-gray-950  dark:hover:bg-green-400"
+                  : " bg-red-500 text-white border-transparent hover:bg-[#fda4af] hover:text-black dark:bg-[#fda4af] dark:border-white dark:text-black dark:hover:text-white dark:hover:bg-red-500 cursor-pointer"
               }
               disabled:opacity-50 disabled:cursor-not-allowed
             `}
@@ -380,7 +389,7 @@ const PredictPage: React.FC = () => {
               </div>
             )}
 
-            <div className="text-sm text-gray-600 dark:text-gray-300">
+            <div className="text-sm text-800 dark:text-gray-600 dark:text-gray-300">
               <p className="mb-2">Gợi ý:</p>
               <ul className="list-disc list-inside space-y-1">
                 <li>
@@ -409,7 +418,6 @@ const PredictPage: React.FC = () => {
       {showFeatureDetail && <FeatureDetail />}
 
       {renderModelDetail()}
-
     </>
   );
 };

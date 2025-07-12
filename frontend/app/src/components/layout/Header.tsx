@@ -11,13 +11,13 @@ const Header: React.FC = () => {
 
   const getLinkClass = (target: string) =>
     `hover:underline transition-colors duration-200 ${
-      path === target ? "text-teal-600 dark:text-teal-300 font-semibold underline" : ""
+      path === target ? "text-[#0ea5e9] dark:text-[#7dd3fc] font-semibold underline" : ""
     }`;
 
   return (
-    <header className="bg-gray-100 dark:bg-[#030712] text-dark dark:text-white w-full fixed top-0 z-50 border-b border-b-gray-50 dark:border-b-gray-600">
+    <header className="bg-gray-200 dark:bg-[#030712] text-dark dark:text-white w-full fixed top-0 z-50 border-b border-b-gray-50 dark:border-b-gray-600">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center ">
-        <Link to="/" className="text-xl font-bold">
+        <Link to="/" className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
           Rice Predictor
         </Link>
 

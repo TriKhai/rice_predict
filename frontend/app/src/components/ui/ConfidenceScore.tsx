@@ -27,28 +27,28 @@ const ConfidenceScore: React.FC<ConfidenceScoreProps> = ({
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 md:gap-y-0 gap-x-0 md:gap-x-6 max-w-6xl mx-auto mt-5">
       {/* LEFT - Confidence Score */}
-      <div className="h-full bg-[#f7f7f8] dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl p-6">
+      <div className="h-full bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl p-6">
         <h3 className="text-lg font-semibold mb-2">Độ tin cậy</h3>
         <div className="flex items-center space-x-4">
-          <span className="text-[#7dd3fc] text-xl font-bold min-w-[60px] text-right">
+          <span className="text-[#0ea5e9]  dark:text-[#7dd3fc] text-xl font-bold min-w-[60px] text-right">
             {confidenceScore.toFixed(2)}%
           </span>
 
-          <div className="flex-1 bg-gray-700 rounded h-6">
+          <div className="flex-1 bg-[#364153] rounded h-6">
             <div
-              className="bg-[#7dd3fc] h-6 rounded transition-all duration-700 ease-out"
+              className="bg-[#7dd3fc]  dark:bg-[#7dd3fc] h-6 rounded transition-all duration-700 ease-out"
               style={{ width: `${animatedScore}%` }}
             ></div>
           </div>
         </div>
-        <p className="mt-3 text-sm italic text-gray-500 dark:text-gray-400">
+        <p className="mt-3 text-sm italic text-gray-800 dark:text-gray-400">
           Giá trị thể hiện độ tin cậy tổng thể của mô hình dựa trên phân bố xác
           suất các lớp.
         </p>
       </div>
 
       {/* RIGHT - Gauge Charts */}
-      <div className="h-full bg-[#f7f7f8] dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl p-6">
+      <div className="h-full bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl p-6">
         <h3 className="text-lg font-semibold mb-1">Xác suất mỗi lớp</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-15 md:gap-y-0 gap-x-0 md:gap-x-8">
           {classProbabilities.map((item, index) => (

@@ -52,30 +52,42 @@ const features: Feature[] = [
 
 const FeatureDetail: React.FC = () => {
   return (
-    <div className="max-w-6xl mx-auto mt-5 p-6 space-y-6 bg-[#f7f7f8] dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
+    <div className="max-w-6xl mx-auto mt-5 p-6 space-y-6 bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
       <h2 className="text-2xl font-bold text-center">
         Chi tiết các thuộc tính
       </h2>
       <div className="overflow-x-auto rounded-sm overflow-hidden border border-gray-300 dark:border-gray-600">
-        <table className="w-full table-auto border-collapse border border-gray-300 dark:border-gray-600 text-sm">
-          <thead className="bg-gray-200 dark:bg-gray-700 text-left">
+        <table className="w-full table-auto border-collapse border border-gray-300 dark:border-gray-600 text-xs sm:text-sm md:text-base">
+          <thead className="bg-gray-300 dark:bg-gray-700 text-left">
             <tr>
-              <th className="border dark:border-gray-600 px-4 py-2">Tên thuộc tính</th>
+              <th className="border dark:border-gray-600 px-4 py-2">
+                Tên thuộc tính
+              </th>
               <th className="border dark:border-gray-600 px-4 py-2">Mô tả</th>
-              <th className="border dark:border-gray-600 px-4 py-2">Khoảng giá trị</th>
+              <th className="border dark:border-gray-600 px-4 py-2">
+                Khoảng giá trị
+              </th>
               <th className="border dark:border-gray-600 px-4 py-2">Đơn vị</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="bg-white dark:bg-[#0F1727]">
             {features.map((f) => (
               <tr
                 key={f.name}
                 className="hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                <td className="border dark:border-gray-600 px-4 py-2 font-medium text-lg">{f.name}</td>
-                <td className="border dark:border-gray-600 px-4 py-2 text-lg">{f.description}</td>
-                <td className="border dark:border-gray-600 px-4 py-2 text-lg">{f.range}</td>
-                <td className="border dark:border-gray-600 px-4 py-2 text-lg">{f.unit ?? "-"}</td>
+                <td className="border dark:border-gray-600 px-4 py-2 font-medium text-sm sm:text-base md:text-lg">
+                  {f.name}
+                </td>
+                <td className="border dark:border-gray-600 px-4 py-2 text-sm sm:text-base md:text-lg">
+                  {f.description}
+                </td>
+                <td className="border dark:border-gray-600 px-4 py-2 text-sm sm:text-base md:text-lg">
+                  {f.range}
+                </td>
+                <td className="border dark:border-gray-600 px-4 py-2 text-sm sm:text-base md:text-lg">
+                  {f.unit ?? "-"}
+                </td>
               </tr>
             ))}
           </tbody>
