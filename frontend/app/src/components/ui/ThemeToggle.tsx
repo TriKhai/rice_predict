@@ -31,7 +31,7 @@ export default function ThemeToggle() {
 
     if (theme === "system") {
       const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-      const handler = (e: MediaQueryListEvent) => {
+      const handler = () => {
         applyTheme("system");
       };
       mediaQuery.addEventListener("change", handler);
