@@ -49,38 +49,38 @@ const PredictSchema = Yup.object().shape({
   area: Yup.number()
     .typeError("Vui lòng nhập số")
     .positive("Giá trị âm không hợp lệ")
-    .min(7000, "Giá trị trong khoảng (7000-20000px)")
-    .max(20000, "Giá trị trong khoảng (7000-20000px)")
+    .min(3800, "Giá trị quá nhỏ (3800-36000px)")
+    .max(36000, "Giá trị quá lớn (3800-36000px)")
     .required("Vui lòng nhập giá trị"),
   perimeter: Yup.number()
     .typeError("Vui lòng nhập số")
     .positive("Giá trị âm không hợp lệ")
-    .min(300, "Giá trị trong khoảng (300-600px)")
-    .max(600, "Giá trị trong khoảng (300-600px)")
+    .min(200, "Giá trị quá nhỏ (200-800px)")
+    .max(800, "Giá trị quá lớn (200-800px)")
     .required("Vui lòng nhập giá trị"),
   major_axis_length: Yup.number()
     .typeError("Vui lòng nhập số")
     .positive("Giá trị âm không hợp lệ")
-    .min(100, "Giá trị trong khoảng (100-300px)")
-    .max(300, "Giá trị trong khoảng (100-300px)")
+    .min(100, "Giá trị quá nhỏ  (100-300px)")
+    .max(300, "Giá trị quá lớn (100-300px)")
     .required("Vui lòng nhập giá trị"),
   minor_axis_length: Yup.number()
     .typeError("Vui lòng nhập số")
     .positive("Giá trị âm không hợp lệ")
-    .min(50, "Giá trị trong khoảng (50-150px)")
-    .max(150, "Giá trị trong khoảng (50-150px)")
+    .min(50, "Giá trị quá nhỏ  (50-150px)")
+    .max(150, "Giá trị quá lớn (50-150px)")
     .required("Vui lòng nhập giá trị"),
   eccentricity: Yup.number()
     .typeError("Vui lòng nhập số")
     .positive("Giá trị âm không hợp lệ")
-    .min(0, "Giá trị trong khoảng (0-1)")
-    .max(1, "Giá trị trong khoảng (0-1)")
+    .min(0, "Giá trị quá nhỏ  (0-1)")
+    .max(1, "Giá trị quá lớn (0-1)")
     .required("Vui lòng nhập giá trị"),
   extent: Yup.number()
     .typeError("Vui lòng nhập số")
     .positive("Giá trị âm không hợp lệ")
-    .min(0, "Giá trị trong khoảng (0-1)")
-    .max(1, "Giá trị trong khoảng (0-1)")
+    .min(0, "Giá trị quá nhỏ  (0-1)")
+    .max(1, "Giá trị quá lớn (0-1)")
     .required("Vui lòng nhập giá trị"),
 });
 
@@ -109,13 +109,13 @@ const PredictPage: React.FC = () => {
       key: "area",
       name: "Area",
       desc: "Diện tích của hạt gạo (px)",
-      hint: "7000 - 20000px",
+      hint: "3800 - 36000px",
     },
     {
       key: "perimeter",
       name: "Perimeter",
       desc: "Chu vi của hạt gạo (px)",
-      hint: "300 - 600px",
+      hint: "200 - 800px",
     },
     {
       key: "major_axis_length",
@@ -187,17 +187,45 @@ const PredictPage: React.FC = () => {
     }
   }, [formik.errors, formik.touched]);
 
+
+  const ellipsePerimeterRamanujan2 = (major: number, minor: number): number => {
+    const a = major / 2;
+    const b = minor / 2;
+
+    const h = ((a - b) / (a + b)) ** 2;
+
+    const perimeter =
+      Math.PI * (a + b) * (1 + (3 * h) / (10 + Math.sqrt(4 - 3 * h)));
+
+    return parseFloat(perimeter.toFixed(3)); // Giữ 3 chữ số thập phân
+  };
+
+
   const fillRandomValues = () => {
-    const random = (min: number, max: number, precision = 2) =>
+    const random = (min: number, max: number, precision = 3) =>
       parseFloat((Math.random() * (max - min) + min).toFixed(precision));
 
+    // Ràng buộc theo yêu cầu:
+    const major = random(100, 300); // 100–300 px
+    const minor = random(50, Math.min(150, major)); // 50–150 px và luôn ≤ major
+
+    const area = parseFloat(((Math.PI * major * minor) / 4).toFixed(3));
+    const perimeter = ellipsePerimeterRamanujan2(major, minor)
+    const eccentricity = parseFloat(
+      Math.sqrt(1 - minor ** 2 / major ** 2).toFixed(3)
+    );
+    // const extent = parseFloat((area / (major * minor)).toFixed(3));
+    const boundingBoxArea = major * minor * random(1, 1.2);
+    const extent = parseFloat((area / boundingBoxArea).toFixed(3));
+
+
     const randomValues: RiceInput = {
-      area: random(7000, 20000, 0),
-      perimeter: random(300, 600, 0),
-      major_axis_length: random(100, 300),
-      minor_axis_length: random(50, 150),
-      eccentricity: random(0, 1),
-      extent: random(0, 1),
+      area,
+      perimeter,
+      major_axis_length: major,
+      minor_axis_length: minor,
+      eccentricity,
+      extent,
     };
 
     formik.setValues(randomValues);
