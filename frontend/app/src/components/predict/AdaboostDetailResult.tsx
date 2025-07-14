@@ -1,7 +1,7 @@
 import React from "react";
 import ConfidenceScore from "../ui/ConfidenceScore";
 import type { AdaBoostResponseData } from "../../types/api";
-import ModelInfo from "../ui/ModelInfo";
+// import ModelInfo from "../ui/ModelInfo";
 // import ModelInputInfo from "../ui/ModelInput";
 // import FeatureImportances from "../ui/FeatureImpotances";
 
