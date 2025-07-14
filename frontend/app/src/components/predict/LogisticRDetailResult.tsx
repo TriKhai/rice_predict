@@ -1,6 +1,6 @@
 import React from "react";
 import type { LRResponseData } from "../../types/api";
-import ConfidenceScore from "../ui/ConfidenceScore";
+// import ConfidenceScore from "../ui/ConfidenceScore";
 // import ModelInfo from "../ui/ModelInfo";
 // import ModelInputInfo from "../ui/ModelInput";
 import CoefficientTable from "../ui/CoeficientTable";
@@ -12,7 +12,7 @@ interface Props {
 const LogisticRDetailResult: React.FC<Props> = ({ data }) => {
   return (
     <>
-      <ConfidenceScore
+      {/* <ConfidenceScore
         confidenceScore={
           Math.max(data.probabilities.Cammeo, data.probabilities.Osmancik) * 100
         }
@@ -20,7 +20,7 @@ const LogisticRDetailResult: React.FC<Props> = ({ data }) => {
           { label: "Cammeo", percentage: data.probabilities.Cammeo * 100 },
           { label: "Osmancik", percentage: data.probabilities.Osmancik * 100 },
         ]}
-      />
+      /> */}
 
       {/* <ModelInfo
         modelName={data.model}

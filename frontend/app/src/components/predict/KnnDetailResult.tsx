@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { KNNResponseData } from "../../types/api";
-import ConfidenceScore from "../ui/ConfidenceScore";
+// import ConfidenceScore from "../ui/ConfidenceScore";
 // import ModelInfo from "../ui/ModelInfo";
 import NeighborCard from "../ui/NeighbirCard";
 // import ModelInputInfo from "../ui/ModelInput";
@@ -19,7 +19,7 @@ const KnnDetailResult: React.FC<Props> = ({ data }) => {
 
   return (
     <>
-      <ConfidenceScore
+      {/* <ConfidenceScore
         confidenceScore={
           Math.max(data.probabilities.Cammeo, data.probabilities.Osmancik) * 100
         }
@@ -27,7 +27,7 @@ const KnnDetailResult: React.FC<Props> = ({ data }) => {
           { label: "Cammeo", percentage: data.probabilities.Cammeo * 100 },
           { label: "Osmancik", percentage: data.probabilities.Osmancik * 100 },
         ]}
-      />
+      /> */}
 
       {/* <ModelInfo
         modelName="K-Nearest Neighbors"

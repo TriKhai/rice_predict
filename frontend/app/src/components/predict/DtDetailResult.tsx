@@ -2,7 +2,7 @@ import React from "react";
 import type { DTResponseData } from "../../types/api";
 // import ModelInputInfo from "../ui/ModelInput";
 // import ModelInfo from "../ui/ModelInfo";
-import ConfidenceScore from "../ui/ConfidenceScore";
+// import ConfidenceScore from "../ui/ConfidenceScore";
 import TreeFlowFromText from "../ui/TreeFlowFromText";
 // import DtText from "../ui/DtText";
 // import FeatureImportances from "../ui/FeatureImpotances";
@@ -14,7 +14,7 @@ interface Props {
 const DtDetailResult: React.FC<Props> = ({ data }) => {
   return (
     <>
-      <ConfidenceScore
+      {/* <ConfidenceScore
         confidenceScore={
           Math.max(data.probabilities.Cammeo, data.probabilities.Osmancik) * 100
         }
@@ -22,7 +22,7 @@ const DtDetailResult: React.FC<Props> = ({ data }) => {
           { label: "Cammeo", percentage: data.probabilities.Cammeo * 100 },
           { label: "Osmancik", percentage: data.probabilities.Osmancik * 100 },
         ]}
-      />
+      /> */}
 
       {/* <ModelInfo
         modelName={data.model}

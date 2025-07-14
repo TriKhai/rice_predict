@@ -1,6 +1,6 @@
 import React from "react";
 import type { MLPResponseData } from "../../types/api";
-import ConfidenceScore from "../ui/ConfidenceScore";
+// import ConfidenceScore from "../ui/ConfidenceScore";
 import NeuralFlowDiagram from "../ui/NeuralNetwork";
 // import ModelInfo from "../ui/ModelInfo";
 // import ModelInputInfo from "../ui/ModelInput";
@@ -39,13 +39,13 @@ const MlpDetailResult: React.FC<Props> = ({ data }) => {
 
   return (
     <>
-      <ConfidenceScore
+      {/* <ConfidenceScore
         confidenceScore={data.certainty_score * 100}
         classProbabilities={[
           { label: "Cammeo", percentage: data.probabilities.Cammeo * 100 },
           { label: "Osmancik", percentage: data.probabilities.Osmancik * 100 },
         ]}
-      />
+      /> */}
 
       {/* <ModelInfo
         modelName={data.model}

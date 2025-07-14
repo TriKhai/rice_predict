@@ -5,23 +5,23 @@ import * as Yup from "yup";
 import ModelSummary from "../../components/predict/ModelSummary";
 import FeatureDetail from "../../components/predict/FeatureDetail";
 import type {
-  AdaBoostResponseData,
+  // AdaBoostResponseData,
   ApiRes,
   DTResponseData,
   KNNResponseData,
-  LRResponseData,
+  // LRResponseData,
   MLPResponseData,
-  NBResponseData,
-  RFResponseData,
+  // NBResponseData,
+  // RFResponseData,
   SVMResponseData,
 } from "../../types/api";
 import KnnDetailResult from "../../components/predict/KnnDetailResult";
-import NbDetailResult from "../../components/predict/NbDetailResult";
+// import NbDetailResult from "../../components/predict/NbDetailResult";
 import DtDetailResult from "../../components/predict/DtDetailResult";
-import RfDetailResult from "../../components/predict/RfDetailResult";
-import LogisticRDetailResult from "../../components/predict/LogisticRDetailResult";
+// import RfDetailResult from "../../components/predict/RfDetailResult";
+// import LogisticRDetailResult from "../../components/predict/LogisticRDetailResult";
 import SvmDetailResult from "../../components/predict/SvmDetailResult";
-import AdaboostDetailResult from "../../components/predict/AdaboostDetailResult";
+// import AdaboostDetailResult from "../../components/predict/AdaboostDetailResult";
 import MlpDetailResult from "../../components/predict/MlpDetailResult";
 
 const defaultForm: RiceInput = {
@@ -245,25 +245,25 @@ const PredictPage: React.FC = () => {
     switch (dataRes?.data.model) {
       case "K-Nearest Neighbors":
         return <KnnDetailResult data={dataRes?.data as KNNResponseData} />;
-      case "Naive Bayes":
-        return <NbDetailResult data={dataRes?.data as NBResponseData} />;
-      case "Random Forest":
-        return <RfDetailResult data={dataRes?.data as RFResponseData} />;
+      // case "Naive Bayes":
+      //   return <NbDetailResult data={dataRes?.data as NBResponseData} />;
+      // case "Random Forest":
+      //   return <RfDetailResult data={dataRes?.data as RFResponseData} />;
       case "Decision Tree":
         return <DtDetailResult data={dataRes?.data as DTResponseData} />;
-      case "Logistic Regression":
-        return <LogisticRDetailResult data={dataRes?.data as LRResponseData} />;
+      // case "Logistic Regression":
+      //   return <LogisticRDetailResult data={dataRes?.data as LRResponseData} />;
       case "SVM (Support Vector Machine)":
         return <SvmDetailResult data={dataRes?.data as SVMResponseData} />;
-      case "AdaBoost":
-        return (
-          <AdaboostDetailResult data={dataRes?.data as AdaBoostResponseData} />
-        );
+      // case "AdaBoost":
+      //   return (
+      //     <AdaboostDetailResult data={dataRes?.data as AdaBoostResponseData} />
+      //   );
       case "Multilayer Perceptron":
         return <MlpDetailResult data={dataRes?.data as MLPResponseData} />;
 
       default:
-        return <p>Không hỗ trợ mô hình này.</p>;
+        return <p></p>;
     }
   };
 

@@ -1,8 +1,5 @@
 import React from "react";
-import ReactFlow, {
-  Background,
-  Controls,
-} from "reactflow";
+import ReactFlow, { Background, Controls } from "reactflow";
 import type { Node, Edge } from "reactflow";
 import "reactflow/dist/style.css";
 
@@ -59,7 +56,6 @@ function parseSklearnTree(treeText: string): TreeNode[] {
   return nodes;
 }
 
-
 // Tạo nodes & edges
 function treeToFlowElements(
   tree: TreeNode[],
@@ -89,7 +85,12 @@ function treeToFlowElements(
           xPos: acc.xPos,
           count: acc.count,
         };
-        const { nodes: childNodes } = treeToFlowElements([child], level + 1, tempAcc, id);
+        const { nodes: childNodes } = treeToFlowElements(
+          [child],
+          level + 1,
+          tempAcc,
+          id
+        );
         childPositions.push(childNodes[0].position.x);
         acc.nodes.push(...tempAcc.nodes);
         acc.edges.push(...tempAcc.edges);
@@ -103,8 +104,10 @@ function treeToFlowElements(
     }
 
     const displayName = node.name.startsWith("class:")
-        ? node.name.includes("1") ? "Osmancik" : "Cammeo"
-        : node.name;
+      ? node.name.includes("1")
+        ? "Osmancik"
+        : "Cammeo"
+      : node.name;
 
     acc.nodes.push({
       id,
@@ -136,19 +139,22 @@ function treeToFlowElements(
   return { nodes: acc.nodes, edges: acc.edges };
 }
 
-
-
-const DecisionTreeSklearn: React.FC<DecisionTreeSklearnProps> = ({ treeText }) => {
+const DecisionTreeSklearn: React.FC<DecisionTreeSklearnProps> = ({
+  treeText,
+}) => {
   const tree = parseSklearnTree(treeText);
   const { nodes, edges } = treeToFlowElements(tree);
 
   return (
-    <div className="max-w-6xl mx-auto mt-6 p-6 bg-gray-100 dark:bg-[#0f1727] rounded-xl">
-      <h3 className="text-lg font-semibold mb-4 dark:text-white">Sơ đồ cây quyết định</h3>
+    <div className="max-w-6xl mx-auto mt-5 p-6 space-y-6 bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
+      <h3 className="text-lg font-semibold mb-4 dark:text-white">
+        Sơ đồ cây quyết định
+      </h3>
       <p className="text-sm italic text-gray-800 dark:text-gray-400">
-    Sơ đồ cây quyết định thể hiện cách mô hình phân loại mẫu dựa vào các đặc trưng đầu vào. 
-  Mỗi nhánh là một điều kiện kiểm tra, và nút lá là kết quả phân loại cuối cùng.
-  </p>
+        Sơ đồ cây quyết định thể hiện cách mô hình phân loại mẫu dựa vào các đặc
+        trưng đầu vào. Mỗi nhánh là một điều kiện kiểm tra, và nút lá là kết quả
+        phân loại cuối cùng.
+      </p>
       <div style={{ width: "100%", height: 500 }}>
         <ReactFlow
           nodes={nodes}
