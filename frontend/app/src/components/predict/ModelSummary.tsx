@@ -77,9 +77,9 @@ const ModelSummaryAll: React.FC = () => {
         <table className="w-full table-auto text-xs sm:text-sm md:text-base">
           <thead className="bg-gray-300 dark:bg-gray-700 text-left">
             <tr>
-              <th className="px-4 py-2 w-1/6">Viết tắt</th>
-              <th className="px-4 py-2 w-1/4">Tên giải thuật</th>
-              <th className="px-4 py-2">Mô tả</th>
+              <th className="px-4 py-2 w-1/6 text-center">Viết tắt</th>
+              <th className="px-4 py-2 w-1/4 text-center">Tên giải thuật</th>
+              <th className="px-4 py-2 text-center">Mô tả</th>
             </tr>
           </thead>
           <tbody className="dark:bg-[#0F1727] bg-white">

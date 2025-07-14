@@ -1,4 +1,5 @@
 import React from "react";
+import featureImage from "../../assets/ricemodel.jpg";
 
 interface Feature {
   name: string;
@@ -50,42 +51,57 @@ const FeatureDetail: React.FC = () => {
       <h2 className="text-2xl font-bold text-center">
         Chi tiết các thuộc tính
       </h2>
-      <div className="overflow-x-auto rounded-sm overflow-hidden border border-gray-300 dark:border-gray-600">
-        <table className="w-full table-auto border-collapse border border-gray-300 dark:border-gray-600 text-xs sm:text-sm md:text-base">
-          <thead className="bg-gray-300 dark:bg-gray-700 text-left">
-            <tr>
-              <th className="border dark:border-gray-600 px-4 py-2">
-                Tên thuộc tính
-              </th>
-              <th className="border dark:border-gray-600 px-4 py-2">Mô tả</th>
-              <th className="border dark:border-gray-600 px-4 py-2">
-                Khoảng giá trị
-              </th>
-              <th className="border dark:border-gray-600 px-4 py-2">Đơn vị</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white dark:bg-[#0F1727]">
-            {features.map((f) => (
-              <tr
-                key={f.name}
-                className="hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                <td className="border dark:border-gray-600 px-4 py-2 font-medium text-sm sm:text-base md:text-lg">
-                  {f.name}
-                </td>
-                <td className="border dark:border-gray-600 px-4 py-2 text-sm sm:text-base md:text-lg">
-                  {f.description}
-                </td>
-                <td className="border dark:border-gray-600 px-4 py-2 text-sm sm:text-base md:text-lg">
-                  {f.range}
-                </td>
-                <td className="border dark:border-gray-600 px-4 py-2 text-sm sm:text-base md:text-lg">
-                  {f.unit ?? "-"}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        <div className="flex flex-col items-center">
+          <img
+            src={featureImage}
+            alt="Cấu trúc hạt gạo Osmancik và Cammeo"
+            className="w-full md:w-[96%] rounded shadow"
+          />
+        </div>
+        <div className="md:col-span-1 space-y-4">
+          <div className="overflow-x-auto rounded-sm overflow-hidden border border-gray-300 dark:border-gray-600">
+            <table className="w-full table-auto border-collapse border border-gray-300 dark:border-gray-600 text-xs sm:text-sm md:text-base">
+              <thead className="bg-gray-300 dark:bg-gray-700 text-left">
+                <tr>
+                  <th className="border dark:border-gray-600 px-4 py-2">
+                    Tên thuộc tính
+                  </th>
+                  <th className="border dark:border-gray-600 px-4 py-2">
+                    Mô tả
+                  </th>
+                  <th className="border dark:border-gray-600 px-4 py-2">
+                    Khoảng giá trị
+                  </th>
+                  <th className="border dark:border-gray-600 px-4 py-2">
+                    Đơn vị
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white dark:bg-[#0F1727]">
+                {features.map((f) => (
+                  <tr
+                    key={f.name}
+                    className="hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    <td className="border dark:border-gray-600 px-4 py-2 font-medium text-sm sm:text-base md:text-lg">
+                      {f.name}
+                    </td>
+                    <td className="border dark:border-gray-600 px-4 py-2 text-sm sm:text-base md:text-lg">
+                      {f.description}
+                    </td>
+                    <td className="border dark:border-gray-600 px-4 py-2 text-sm sm:text-base md:text-lg">
+                      {f.range}
+                    </td>
+                    <td className="border dark:border-gray-600 px-4 py-2 text-sm sm:text-base md:text-lg">
+                      {f.unit ?? "-"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
       <div>
         <ul className="space-y-4 text-sm md:text-base">

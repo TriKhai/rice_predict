@@ -7,25 +7,25 @@ const HomePage: React.FC = () => {
   return (
     <>
       <div className="max-w-6xl mx-auto mt-20 p-6 space-y-6 bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
-        <div className="max-w-6xl mx-auto space-y-10">
+        <div className="max-w-6xl mx-auto space-y-6">
           {/* Intro */}
           <h1 className="text-2xl md:text-3xl font-bold text-center">
-            Rice Classification: Cammeo vs Osmancik
+            PHÂN LOẠI GẠO CAMMEO & OSMANCIK
           </h1>
           <hr className="border-t dark:border-gray-600" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
             {/* Text chiếm 2 phần */}
             <div className="md:col-span-2 space-y-4">
-              <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              <p className="text-base md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
                 Trong số các giống gạo được chứng nhận trồng tại Thổ Nhĩ Kỳ, hai
                 giống <strong>Osmancik</strong> (có diện tích gieo trồng lớn từ
                 năm 1997) và <strong>Cammeo</strong> (được trồng từ năm 2014) đã
-                được chọn để nghiên cứu. Khi xét về đặc điểm chung của giống
-                Osmancik, chúng có hình dạng rộng, dài, bóng và mờ đục. Tương
-                tự, giống Cammeo cũng có đặc điểm{" "}
-                <em>rộng, dài, bóng và mờ đục</em>.. Tổng cộng{" "}
+                được chọn để nghiên cứu. Khi xét về đặc điểm chung của giống 
+                <strong> Osmancik</strong>, chúng có hình dạng rộng, dài, bóng và mờ đục. Tương
+                tự, giống <strong>Cammeo</strong> cũng có đặc điểm{" "}
+                rộng, dài, bóng và mờ đục.. Tổng cộng{" "}
                 <strong>3810 hình ảnh</strong> hạt gạo của hai giống này đã được
-                chụp, xử lý và rút trích đặc trưng. 7 đặc trưng hình thái học đã
+                chụp, xử lý và rút trích đặc trưng. <strong>7 đặc trưng</strong> hình thái học đã
                 được trích xuất cho mỗi hạt gạo.
               </p>
             </div>
@@ -45,19 +45,19 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 md:gap-y-0 gap-x-0 md:gap-x-6 max-w-6xl mx-auto mt-5 ">
-        <div>
-          <FeatureDetail />
-        </div>
-        <div>
-          <ModelSummaryAll />
-        </div>
+      <div>
+        <FeatureDetail />
+      </div>
+      <div>
+        <ModelSummaryAll />
       </div>
 
-      <div className="max-w-6xl mx-auto mt-10 p-6 space-y-1 bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
+      <div className="max-w-6xl mx-auto mt-5 p-6 space-y-1 bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
         <div className="max-w-6xl mx-auto space-y-5">
           {/* Intro */}
-          <h1 className="text-2xl md:text-3xl font-bold text-center">Tác giả</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-center">
+            Tác giả
+          </h1>
           <hr className="border-t dark:border-gray-600" />
           <div>
             <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">

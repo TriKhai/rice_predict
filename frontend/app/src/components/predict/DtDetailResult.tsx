@@ -12,6 +12,7 @@ interface Props {
 }
 
 const DtDetailResult: React.FC<Props> = ({ data }) => {
+  console.log(data.tree_text)
   return (
     <>
       {/* <ConfidenceScore

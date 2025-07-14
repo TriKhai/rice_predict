@@ -9,6 +9,7 @@ import type {
   ApiRes,
   DTResponseData,
   KNNResponseData,
+  LRResponseData,
   // LRResponseData,
   MLPResponseData,
   // NBResponseData,
@@ -23,6 +24,7 @@ import DtDetailResult from "../../components/predict/DtDetailResult";
 import SvmDetailResult from "../../components/predict/SvmDetailResult";
 // import AdaboostDetailResult from "../../components/predict/AdaboostDetailResult";
 import MlpDetailResult from "../../components/predict/MlpDetailResult";
+import LogisticRDetailResult from "../../components/predict/LogisticRDetailResult";
 
 const defaultForm: RiceInput = {
   area: 0,
@@ -162,7 +164,7 @@ const PredictPage: React.FC = () => {
         if (data.success) {
           setDataRes(data);
           setResult(
-            `Kết quả: Gạo trên thuộc loại gạo ${data.data?.prediction}`
+            `Gạo ${data.data?.prediction}`
           );
           setErr(null);
         } else {
@@ -187,7 +189,6 @@ const PredictPage: React.FC = () => {
     }
   }, [formik.errors, formik.touched]);
 
-
   const ellipsePerimeterRamanujan2 = (major: number, minor: number): number => {
     const a = major / 2;
     const b = minor / 2;
@@ -200,7 +201,6 @@ const PredictPage: React.FC = () => {
     return parseFloat(perimeter.toFixed(3)); // Giữ 3 chữ số thập phân
   };
 
-
   const fillRandomValues = () => {
     const random = (min: number, max: number, precision = 3) =>
       parseFloat((Math.random() * (max - min) + min).toFixed(precision));
@@ -210,14 +210,13 @@ const PredictPage: React.FC = () => {
     const minor = random(50, Math.min(150, major)); // 50–150 px và luôn ≤ major
 
     const area = parseFloat(((Math.PI * major * minor) / 4).toFixed(3));
-    const perimeter = ellipsePerimeterRamanujan2(major, minor)
+    const perimeter = ellipsePerimeterRamanujan2(major, minor);
     const eccentricity = parseFloat(
       Math.sqrt(1 - minor ** 2 / major ** 2).toFixed(3)
     );
     // const extent = parseFloat((area / (major * minor)).toFixed(3));
     const boundingBoxArea = major * minor * random(1, 1.2);
     const extent = parseFloat((area / boundingBoxArea).toFixed(3));
-
 
     const randomValues: RiceInput = {
       area,
@@ -251,8 +250,8 @@ const PredictPage: React.FC = () => {
       //   return <RfDetailResult data={dataRes?.data as RFResponseData} />;
       case "Decision Tree":
         return <DtDetailResult data={dataRes?.data as DTResponseData} />;
-      // case "Logistic Regression":
-      //   return <LogisticRDetailResult data={dataRes?.data as LRResponseData} />;
+      case "Logistic Regression":
+        return <LogisticRDetailResult data={dataRes?.data as LRResponseData} />;
       case "SVM (Support Vector Machine)":
         return <SvmDetailResult data={dataRes?.data as SVMResponseData} />;
       // case "AdaBoost":
@@ -385,7 +384,7 @@ const PredictPage: React.FC = () => {
             <h3 className="text-xl font-semibold">Kết quả</h3>
 
             {result && (
-              <div className="p-4 border rounded bg-green-100 text-green-700 border-green-400 font-medium">
+              <div className="text-center text-xl p-4 border rounded bg-green-100 text-green-700 border-green-400 font-medium">
                 {result}
               </div>
             )}

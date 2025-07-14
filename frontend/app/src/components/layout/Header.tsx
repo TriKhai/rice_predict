@@ -5,7 +5,7 @@ import ThemeToggle from "../ui/ThemeToggle";
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [touchedLink, setTouchedLink] = useState<string | null>(null); 
+  const [touchedLink, setTouchedLink] = useState<string | null>(null);
   const location = useLocation();
   const path = location.pathname;
 
@@ -26,8 +26,16 @@ const Header: React.FC = () => {
   return (
     <header className="bg-gray-200 dark:bg-[#030712] text-dark dark:text-white w-full fixed top-0 z-50 border-b border-b-gray-50 dark:border-b-gray-600">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        <Link to="/" className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
-          Rice Predictor
+        <Link
+          to="/"
+          className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold"
+        >
+          <div className="flex gap-2">
+            <div className="flex items-center">
+              <img src="../../../public/logo.png" alt="" className="w-[30px] h-[30px]"/>
+            </div>
+            Rice Prediction
+          </div>
         </Link>
 
         <div className="flex items-center space-x-4">
