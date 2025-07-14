@@ -22,7 +22,7 @@ const AdaboostDetailResult: React.FC<Props> = ({ data }) => {
         ]}
       />
 
-      <ModelInfo
+      {/* <ModelInfo
         modelName={data.model}
         parameters={[
           {
@@ -36,7 +36,7 @@ const AdaboostDetailResult: React.FC<Props> = ({ data }) => {
             value: data.hyperparameters.n_estimators,
           }
         ]}
-      />
+      /> */}
 
       {/* <ModelInputInfo inputs={data.input} /> */}
 
