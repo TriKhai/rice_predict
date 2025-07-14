@@ -18,7 +18,7 @@ interface TreeNode {
 // Phân tích format `|---` của sklearn
 function parseSklearnTree(treeText: string): TreeNode[] {
   const lines = treeText.trim().split("\n");
-  const rootNodes: TreeNode[] = [];
+  const nodes: TreeNode[] = [];
   const stack: { level: number; node: TreeNode }[] = [];
 
   for (const line of lines) {
@@ -27,13 +27,13 @@ function parseSklearnTree(treeText: string): TreeNode[] {
 
     const indent = (match[1]?.match(/\| {3}/g) || []).length;
     const name = match[4].trim();
-
-
     const level = indent;
+
     const newNode: TreeNode = { name, children: [] };
 
-    if (level === 0) {
-      rootNodes.push(newNode);
+    // Nếu không có cha thì thêm trực tiếp
+    if (stack.length === 0 || level === 0) {
+      nodes.push(newNode);
       stack.length = 0;
       stack.push({ level, node: newNode });
     } else {
@@ -46,34 +46,69 @@ function parseSklearnTree(treeText: string): TreeNode[] {
     }
   }
 
-  return rootNodes;
+  // Nếu có nhiều root-level node → bọc lại
+  if (nodes.length > 1) {
+    return [
+      {
+        name: "Major_Axis_Length",
+        children: nodes,
+      },
+    ];
+  }
+
+  return nodes;
 }
+
 
 // Tạo nodes & edges
 function treeToFlowElements(
   tree: TreeNode[],
   level = 0,
-  xOffset = 0,
-  parentId: string | null = null,
-  acc: { nodes: Node[]; edges: Edge[]; count: number; nextX: number } = {
+  acc: { nodes: Node[]; edges: Edge[]; count: number; xPos: number } = {
     nodes: [],
     edges: [],
     count: 0,
-    nextX: 0,
-  }
+    xPos: 0,
+  },
+  parentId: string | null = null
 ): { nodes: Node[]; edges: Edge[] } {
   for (const node of tree) {
     const id = `node-${acc.count++}`;
 
-    // Tạm tính vị trí x dựa vào thứ tự node để dàn đều
-    const x = acc.nextX * 200;
-    const y = level * 140;
+    let x = 0;
+    const y = level * 160;
 
-    acc.nextX += 1;
+    // Nếu có children, tính vị trí trung bình của các con
+    if (node.children.length > 0) {
+      const childPositions: number[] = [];
+      for (const child of node.children) {
+        const tempAcc = {
+          ...acc,
+          nodes: [],
+          edges: [],
+          xPos: acc.xPos,
+          count: acc.count,
+        };
+        const { nodes: childNodes } = treeToFlowElements([child], level + 1, tempAcc, id);
+        childPositions.push(childNodes[0].position.x);
+        acc.nodes.push(...tempAcc.nodes);
+        acc.edges.push(...tempAcc.edges);
+        acc.count = tempAcc.count;
+        acc.xPos = tempAcc.xPos;
+      }
+      x = childPositions.reduce((a, b) => a + b, 0) / childPositions.length;
+    } else {
+      x = acc.xPos * 200;
+      acc.xPos += 1;
+    }
+
+    const displayName = node.name.startsWith("class:")
+        ? node.name.includes("1") ? "Osmancik" : "Cammeo"
+        : node.name;
 
     acc.nodes.push({
       id,
-      data: { label: node.name },
+      data: { label: displayName },
       position: { x, y },
       style: {
         padding: 10,
@@ -96,14 +131,11 @@ function treeToFlowElements(
         style: { stroke: "#94a3b8" },
       });
     }
-
-    if (node.children.length > 0) {
-      treeToFlowElements(node.children, level + 1, xOffset, id, acc);
-    }
   }
 
   return { nodes: acc.nodes, edges: acc.edges };
 }
+
 
 
 const DecisionTreeSklearn: React.FC<DecisionTreeSklearnProps> = ({ treeText }) => {
@@ -113,6 +145,10 @@ const DecisionTreeSklearn: React.FC<DecisionTreeSklearnProps> = ({ treeText }) =
   return (
     <div className="max-w-6xl mx-auto mt-6 p-6 bg-gray-100 dark:bg-[#0f1727] rounded-xl">
       <h3 className="text-lg font-semibold mb-4 dark:text-white">Sơ đồ cây quyết định</h3>
+      <p className="text-sm italic text-gray-800 dark:text-gray-400">
+    Sơ đồ cây quyết định thể hiện cách mô hình phân loại mẫu dựa vào các đặc trưng đầu vào. 
+  Mỗi nhánh là một điều kiện kiểm tra, và nút lá là kết quả phân loại cuối cùng.
+  </p>
       <div style={{ width: "100%", height: 500 }}>
         <ReactFlow
           nodes={nodes}
