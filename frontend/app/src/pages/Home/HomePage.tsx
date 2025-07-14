@@ -75,7 +75,7 @@ const HomePage: React.FC = () => {
               </li>
               <li>
                 Thân Quốc Tuấn - 0584020xxx - B2207574 -
-                tuanb2205747@student.ctu.edu.vn
+                tuanb2207574@student.ctu.edu.vn
               </li>
               <li>
                 Lý Trí Khải - 0848041xxx - B2207530 -
