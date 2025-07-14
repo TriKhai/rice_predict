@@ -97,7 +97,7 @@ const PredictPage: React.FC = () => {
     { value: "k-nearest-neighbors", label: "K-Nearest Neighbors" },
     { value: "naive-bayes", label: "Naive Bayes" },
     { value: "decision-tree", label: "Decision Tree" },
-    { value: "random-forest", label: "Randosm Forest" },
+    { value: "random-forest", label: "Random Forest" },
     { value: "support-vector-machine", label: "SVM (Support Vector Machine)" },
     { value: "logistic-regression", label: "Logistic Regression" },
     { value: "multilayer-perceptron", label: "Multilayer Perceptron" },
