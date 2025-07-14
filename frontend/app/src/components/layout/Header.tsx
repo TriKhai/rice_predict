@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "../ui/ThemeToggle";
+import logImg from "../../assets/logo.png";
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -32,7 +33,7 @@ const Header: React.FC = () => {
         >
           <div className="flex gap-2">
             <div className="flex items-center">
-              <img src="../../../public/logo.png" alt="" className="w-[30px] h-[30px]"/>
+              <img src={logImg} alt="" className="w-[30px] h-[30px]"/>
             </div>
             Rice Prediction
           </div>
