@@ -4,9 +4,14 @@ import { PieChart, Pie, Cell } from "recharts";
 interface GaugeChartProps {
   value: number;
   label: string;
+  width?: number | string;
+  height?: number | string;
 }
 
-const GaugeChart: React.FC<GaugeChartProps> = ({ value, label }) => {
+const GaugeChart: React.FC<GaugeChartProps> = ({ 
+  value, label, width = "100%",
+  height = 200
+ }) => {
   const arcPercent = 0.7;
   const totalAngle = 360 * arcPercent; // 288°
   const centerAngle = 90; // Hướng lên

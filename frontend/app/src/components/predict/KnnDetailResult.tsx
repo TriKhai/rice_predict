@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import type { KNNResponseData } from "../../types/api";
 import ConfidenceScore from "../ui/ConfidenceScore";
-import ModelInfo from "../ui/ModelInfo";
+// import ModelInfo from "../ui/ModelInfo";
 import NeighborCard from "../ui/NeighbirCard";
-import ModelInputInfo from "../ui/ModelInput";
+// import ModelInputInfo from "../ui/ModelInput";
 
 interface Props {
   data: KNNResponseData;
@@ -29,7 +29,7 @@ const KnnDetailResult: React.FC<Props> = ({ data }) => {
         ]}
       />
 
-      <ModelInfo
+      {/* <ModelInfo
         modelName="K-Nearest Neighbors"
         parameters={[
           {
@@ -40,9 +40,9 @@ const KnnDetailResult: React.FC<Props> = ({ data }) => {
           { key: "Khoảng cách (metric)", value: data.hyperparameters.metric },
           { key: "Số mẫu huấn luyện", value: data.training_samples },
         ]}
-      />
+      /> */}
 
-      <ModelInputInfo inputs={data.input} />
+      {/* <ModelInputInfo inputs={data.input} /> */}
 
       <div className="max-w-6xl mx-auto mt-5 p-6 space-y-6 bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">

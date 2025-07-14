@@ -1,7 +1,7 @@
 import React from "react";
 import type { SVMResponseData } from "../../types/api";
-import ModelInfo from "../ui/ModelInfo";
-import ModelInputInfo from "../ui/ModelInput";
+// import ModelInfo from "../ui/ModelInfo";
+// import ModelInputInfo from "../ui/ModelInput";
 import CertaintyScore from "../ui/CertaintyScore";
 import SupportVectorInfo from "../ui/SupportVectorInfo";
 
@@ -22,7 +22,7 @@ const SvmDetailResult: React.FC<Props> = ({ data }) => {
       />
 
 
-      <ModelInfo
+      {/* <ModelInfo
         modelName={data.model}
         parameters={[
           {
@@ -38,9 +38,9 @@ const SvmDetailResult: React.FC<Props> = ({ data }) => {
             value: data.hyperparameters.gamma,
           },
         ]}
-      />
+      /> */}
 
-      <ModelInputInfo inputs={data.input} />
+      {/* <ModelInputInfo inputs={data.input} /> */}
 
       <SupportVectorInfo
         total={support_vectors.total}

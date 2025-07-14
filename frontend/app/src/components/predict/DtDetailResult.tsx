@@ -1,10 +1,10 @@
 import React from "react";
 import type { DTResponseData } from "../../types/api";
-import ModelInputInfo from "../ui/ModelInput";
-import ModelInfo from "../ui/ModelInfo";
+// import ModelInputInfo from "../ui/ModelInput";
+// import ModelInfo from "../ui/ModelInfo";
 import ConfidenceScore from "../ui/ConfidenceScore";
-import DtText from "../ui/DtText";
-import FeatureImportances from "../ui/FeatureImpotances";
+// import DtText from "../ui/DtText";
+// import FeatureImportances from "../ui/FeatureImpotances";
 
 interface Props {
   data: DTResponseData;
@@ -23,7 +23,7 @@ const DtDetailResult: React.FC<Props> = ({ data }) => {
         ]}
       />
 
-      <ModelInfo
+      {/* <ModelInfo
         modelName={data.model}
         parameters={[
           {
@@ -43,16 +43,16 @@ const DtDetailResult: React.FC<Props> = ({ data }) => {
             value: data.hyperparameters.min_samples_leaf,
           },
         ]}
-      />
+      /> */}
 
-      <ModelInputInfo inputs={data.input} />
+      {/* <ModelInputInfo inputs={data.input} /> */}
 
-      <DtText
+      {/* <DtText
         treeText={data.tree_text}
-      />
+      /> */}
 
 
-      <FeatureImportances feature_importances={data.feature_importances} />
+      {/* <FeatureImportances feature_importances={data.feature_importances} /> */}
     </>
   );
 };

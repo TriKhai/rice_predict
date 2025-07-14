@@ -1,8 +1,8 @@
 import React from "react";
 import type { MLPResponseData } from "../../types/api";
 import ConfidenceScore from "../ui/ConfidenceScore";
-import ModelInfo from "../ui/ModelInfo";
-import ModelInputInfo from "../ui/ModelInput";
+// import ModelInfo from "../ui/ModelInfo";
+// import ModelInputInfo from "../ui/ModelInput";
 
 interface Props {
   data: MLPResponseData;
@@ -20,7 +20,7 @@ const MlpDetailResult: React.FC<Props> = ({ data }) => {
         ]}
       />
 
-      <ModelInfo
+      {/* <ModelInfo
         modelName={data.model}
         parameters={[
           {
@@ -47,9 +47,9 @@ const MlpDetailResult: React.FC<Props> = ({ data }) => {
               : `${data.hyperparameters.hidden_layer_sizes}`,
           },
         ]}
-      />
+      /> */}
 
-      <ModelInputInfo inputs={data.input} />
+      {/* <ModelInputInfo inputs={data.input} /> */}
     </>
   );
 };

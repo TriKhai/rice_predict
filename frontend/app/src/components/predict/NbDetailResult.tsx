@@ -1,8 +1,8 @@
 import React from "react";
 import type { NBResponseData } from "../../types/api";
 import ConfidenceScore from "../ui/ConfidenceScore";
-import ModelInfo from "../ui/ModelInfo";
-import ModelInputInfo from "../ui/ModelInput";
+// import ModelInfo from "../ui/ModelInfo";
+// import ModelInputInfo from "../ui/ModelInput";
 
 interface Props {
   data: NBResponseData;
@@ -20,7 +20,7 @@ const NbDetailResult: React.FC<Props> = ({ data }) => {
           { label: "Osmancik", percentage: data.probabilities.Osmancik * 100 },
         ]}
       />
-
+{/* 
       <ModelInfo
         modelName={data.model}
         parameters={[
@@ -37,9 +37,9 @@ const NbDetailResult: React.FC<Props> = ({ data }) => {
             value: data.var_smoothing,
           },
         ]}
-      />
+      /> */}
 
-      <ModelInputInfo inputs={data.input} />
+      {/* <ModelInputInfo inputs={data.input} /> */}
     </>
   );
 };

@@ -1,9 +1,9 @@
 import React from "react";
 import type { RFResponseData } from "../../types/api";
 import ConfidenceScore from "../ui/ConfidenceScore";
-import ModelInfo from "../ui/ModelInfo";
-import ModelInputInfo from "../ui/ModelInput";
-import FeatureImportances from "../ui/FeatureImpotances";
+// import ModelInfo from "../ui/ModelInfo";
+// import ModelInputInfo from "../ui/ModelInput";
+// import FeatureImportances from "../ui/FeatureImpotances";
 
 interface Props {
   data: RFResponseData;
@@ -22,7 +22,7 @@ const RfDetailResult: React.FC<Props> = ({ data }) => {
         ]}
       />
 
-      <ModelInfo
+      {/* <ModelInfo
         modelName={data.model}
         parameters={[
           {
@@ -42,11 +42,11 @@ const RfDetailResult: React.FC<Props> = ({ data }) => {
             value: data.hyperparameters.min_samples_leaf,
           },
         ]}
-      />
+      /> */}
 
-      <ModelInputInfo inputs={data.input} />
+      {/* <ModelInputInfo inputs={data.input} /> */}
 
-      <FeatureImportances feature_importances={data.feature_importances} />
+      {/* <FeatureImportances feature_importances={data.feature_importances} /> */}
     </>
   );
 };

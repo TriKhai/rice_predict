@@ -1,8 +1,8 @@
 import React from "react";
 import type { LRResponseData } from "../../types/api";
 import ConfidenceScore from "../ui/ConfidenceScore";
-import ModelInfo from "../ui/ModelInfo";
-import ModelInputInfo from "../ui/ModelInput";
+// import ModelInfo from "../ui/ModelInfo";
+// import ModelInputInfo from "../ui/ModelInput";
 import CoefficientTable from "../ui/CoeficientTable";
 
 interface Props {
@@ -22,7 +22,7 @@ const LogisticRDetailResult: React.FC<Props> = ({ data }) => {
         ]}
       />
 
-      <ModelInfo
+      {/* <ModelInfo
         modelName={data.model}
         parameters={[
           {
@@ -32,9 +32,9 @@ const LogisticRDetailResult: React.FC<Props> = ({ data }) => {
           { key: "Solver", value: data.hyperparameters.solver },
           { key: "C", value: data.hyperparameters.C },
         ]}
-      />
+      /> */}
 
-      <ModelInputInfo inputs={data.input} />
+      {/* <ModelInputInfo inputs={data.input} /> */}
 
       <CoefficientTable
         coefficients={data.coefficients}
