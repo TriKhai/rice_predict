@@ -47,7 +47,7 @@ const KnnDetailResult: React.FC<Props> = ({ data }) => {
       <div className="max-w-6xl mx-auto mt-5 p-6 space-y-6 bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
           <h3 className="font-semibold text-lg mb-2">
-            Các láng giềng gần nhất (K)
+            Các láng giềng gần nhất (K = {data.hyperparameters.n_neighbors})
           </h3>
           <button
             onClick={() => setHighlight((prev) => !prev)}
