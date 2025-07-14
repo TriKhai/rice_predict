@@ -16,20 +16,20 @@ const CertaintyScore: React.FC<ModelInputInfoProps> = ({
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 md:gap-y-0 gap-x-0 md:gap-x-6 max-w-6xl mx-auto mt-5">
       <div className="h-full bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl p-6">
-        <h3 className="text-lg font-semibold mb-2">Distance to Decision Boundary</h3>
+        <h3 className="text-lg font-semibold mb-2">Khoảng cách đến biên quyết định</h3>
         <div className="flex items-center space-x-4">
           <span className="text-[#0ea5e9] dark:text-[#7dd3fc] font-semibold min-w-[60px] text-3xl">
             {certainty_score.toFixed(4)}
           </span>
         </div>
         <p className="mt-3 text-sm italic text-gray-800 dark:text-gray-400">
-          Độ chắc chắn của mô hình dựa trên khoảng cách đến ranh giới quyết
+          Thể hiện độ chắc chắn của mô hình dựa trên khoảng cách đến biên quyết
           định.
         </p>
       </div>
 
       <div className="h-full bg-gray-200 dark:bg-[#0F1727] text-black dark:text-[#ececf1] transition-colors duration-300 dark:border dark:border-gray-600 rounded-2xl p-6">
-        <h3 className="text-lg font-semibold mb-2">Certainty Score</h3>
+        <h3 className="text-lg font-semibold mb-2">Dự đoán của mô hình</h3>
         <div className="flex items-center space-x-4">
           <span
             className={` text-3xl font-semibold ${directionColor}`}

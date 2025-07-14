@@ -1,6 +1,7 @@
 import React from "react";
 import type { MLPResponseData } from "../../types/api";
 import ConfidenceScore from "../ui/ConfidenceScore";
+import NeuralFlowDiagram from "../ui/NeuralNetwork";
 // import ModelInfo from "../ui/ModelInfo";
 // import ModelInputInfo from "../ui/ModelInput";
 
@@ -9,6 +10,32 @@ interface Props {
 }
 
 const MlpDetailResult: React.FC<Props> = ({ data }) => {
+  interface LayersAndActivations {
+    layers: number[];
+    activations: string[];
+  }
+
+  function getLayersAndActivations(
+    data: MLPResponseData
+  ): LayersAndActivations {
+    const inputSize = Object.keys(data.input).length;
+    const outputSize = Object.keys(data.probabilities).length;
+
+    const hidden = Array.isArray(data.hyperparameters.hidden_layer_sizes)
+      ? data.hyperparameters.hidden_layer_sizes
+      : [data.hyperparameters.hidden_layer_sizes];
+
+    const layers = [inputSize, ...hidden, outputSize];
+    const activations = [
+      "",
+      ...hidden.map(() => data.hyperparameters.activation),
+      "softmax", // giả định đầu ra luôn dùng softmax
+    ];
+
+    return { layers, activations };
+  }
+
+  const { layers, activations } = getLayersAndActivations(data);
 
   return (
     <>
@@ -50,6 +77,13 @@ const MlpDetailResult: React.FC<Props> = ({ data }) => {
       /> */}
 
       {/* <ModelInputInfo inputs={data.input} /> */}
+
+      <NeuralFlowDiagram
+        layers={layers}
+        activations={activations}
+        inputFeatures={Object.keys(data.input)} // ["Length", "Width", ...]
+        outputLabels={Object.keys(data.probabilities)} // ["Cammeo", "Osmancik"]
+      />
     </>
   );
 };

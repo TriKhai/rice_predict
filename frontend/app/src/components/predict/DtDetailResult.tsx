@@ -3,6 +3,7 @@ import type { DTResponseData } from "../../types/api";
 // import ModelInputInfo from "../ui/ModelInput";
 // import ModelInfo from "../ui/ModelInfo";
 import ConfidenceScore from "../ui/ConfidenceScore";
+import TreeFlowFromText from "../ui/TreeFlowFromText";
 // import DtText from "../ui/DtText";
 // import FeatureImportances from "../ui/FeatureImpotances";
 
@@ -51,8 +52,9 @@ const DtDetailResult: React.FC<Props> = ({ data }) => {
         treeText={data.tree_text}
       /> */}
 
-
       {/* <FeatureImportances feature_importances={data.feature_importances} /> */}
+
+      <TreeFlowFromText treeText={data.tree_text} />
     </>
   );
 };
