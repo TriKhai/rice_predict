@@ -1,8 +1,8 @@
 ## Member List 
 
-1. Nguyễn Hoàng Tiến Danh - 0869635xxx - B2205858 - danhb2205858@student.ctu.edu.vn
-2. Thân Quốc Tuấn - 0584020xxx - B2207574 - tuanb220574@student.ctu.edu.vn
-3. Lý Trí Khải - 0848041xxx - B2207530 - khaib2207530@student.ctu.edu.vn
+1. Nguyễn Hoàng Tiến Danh - xxx - xxx - xxx@xxx
+2. Thân Quốc Tuấn - xxx - xxx - xxx@xxx
+3. Lý Trí Khải - xxx - xxx - xxx@xxx
 
 ## Technologies Used:
 
